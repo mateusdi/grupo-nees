@@ -6,13 +6,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-//@RequestMapping("/home")
 public class HomeController {
 
-	@GetMapping(value = { "", "/index" })
+	@GetMapping(value = { "/", "/index" })
 	public ModelAndView index() {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("index");
+		mv.setViewName("/home/index");
 
 		return mv;
 	}
@@ -21,7 +20,7 @@ public class HomeController {
 	public ModelAndView telaLogin() {
 		ModelAndView mv = new ModelAndView();
 		System.out.println("aq" + new BCryptPasswordEncoder().encode("123"));
-		mv.setViewName("home/login");
+		mv.setViewName("/home/login");
 		return mv;
 	}
 
