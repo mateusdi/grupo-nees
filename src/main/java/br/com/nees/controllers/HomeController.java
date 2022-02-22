@@ -11,7 +11,7 @@ public class HomeController {
 	@GetMapping(value = { "/", "/index" })
 	public ModelAndView index() {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/home/index");
+		mv.setViewName("home/index");
 
 		return mv;
 	}
@@ -20,7 +20,7 @@ public class HomeController {
 	public ModelAndView telaLogin() {
 		ModelAndView mv = new ModelAndView();
 		System.out.println("aq" + new BCryptPasswordEncoder().encode("123"));
-		mv.setViewName("/home/login");
+		mv.setViewName("home/login");
 		return mv;
 	}
 
