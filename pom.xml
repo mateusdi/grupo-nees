@@ -16,10 +16,8 @@
 	<description>Sistema Web para a gestao pedagogia e administrativa do NEES</description>
 	<properties>
 		<java.version>1.8</java.version>
-		
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
+
+	
 		
 	</properties>
 
@@ -148,6 +146,9 @@
 					<nonFilteredFileExtensions>
 						<nonFilteredFileExtension>properties</nonFilteredFileExtension>
 					</nonFilteredFileExtensions>
+					
+					 <source>1.8</source>
+          			<target>1.8</target>
 					
 					<configuration>
 					<excludes>
