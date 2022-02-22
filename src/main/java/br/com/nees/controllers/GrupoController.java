@@ -121,7 +121,6 @@ public class GrupoController {
 		} else {// error
 			return new ModelAndView("redirect:/");
 		}
-
 	}
 
 	public boolean isCoordenador(@AuthenticationPrincipal Usuario userDetails, Grupo grupo) {// colocar no service
