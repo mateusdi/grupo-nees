@@ -6,6 +6,14 @@
 </head>
 <body>
 <main>
+
+    <div class="col-xs-3 mb-3 ">
+        <a class="btn btn-primary"
+           th:href="@{/membro/admin/grupo/membroGrupo/participantes/{id}(id=${grupo.id})}">
+            <i class="fa fa-users"></i> Participantes do Grupo
+        </a>
+    </div>
+
     <form id="formulario" method="post"
           th:action="@{/membro/admin/grupo/atualizaGrupo/{grupoId}(grupoId = ${grupo.id})} " th:object="${grupo}">
 
@@ -37,18 +45,20 @@
             </div>
         </div>
 
-        <a class="btn btn-primary" th:href="@{/membro/admin/grupo/membroGrupo/participantes/{id}(id=${grupo.id})}">
-            <i class="fas fa-edit"></i> editar
-        </a>
 
 
-        <div class="row">
-            <div class=" col-md offset-sm-3 offset-md-6">
-                <button class="btn btn-success" type="submit">Salvar</button>
+
+
+
+        <div class="row text-center">
+            <div class=" col-md ">
+                <button class="btn btn-primary" type="submit">Salvar</button>
             </div>
         </div>
 
     </form>
+
+
 </main>
 
 <script th:src="@{/js/cidades.js}"></script>

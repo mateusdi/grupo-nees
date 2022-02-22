@@ -10,32 +10,32 @@
 
     <div class="row">
         <div class="col-6 form-group  ">
-            <h6 >Título: <div th:text="${atividade.titulo}"  th:remove="tag"></div></h6>
+            <h6 >Título: <b><div th:text="${atividade.titulo}"  th:remove="tag"></div></b></h6>
         </div>
     </div>
 
 
     <div class="row">
         <div class="col-6 form-group  ">
-            <h6 >Postada em: <div th:text="${#dates.format(atividade.dataCriacao, 'dd/MM/yyyy HH:mm')}"  th:remove="tag"></div></h6>
+            <h6 >Postada em: <b><div th:text="${#dates.format(atividade.dataCriacao, 'dd/MM/yyyy HH:mm')}"  th:remove="tag"></div></b></h6>
         </div>
     </div>
 
     <div class="row">
         <div class="col-6 form-group  ">
-            <h6 ><div th:text="${atividade.tipo.nome}"  th:remove="tag"></div> para o dia: <div th:text="${#dates.format(atividade.prazoEntrega, 'dd/MM/yyyy HH:mm')}"  th:remove="tag"></div></h6>
+            <h6 ><b><div th:text="${atividade.tipo.nome}"  th:remove="tag"></div></b> para o dia: <b><div th:text="${#dates.format(atividade.prazoEntrega, 'dd/MM/yyyy HH:mm')}"  th:remove="tag"></div></b></h6>
         </div>
     </div>
 
     <div class="row">
-        <div class="col-6 form-group  ">
-            <h6 >Descrição: <textarea id="content"  th:text="${atividade.descricao}" ></textarea></h6>
+        <div class="col form-group  ">
+            <h6 >Descrição: <textarea id="content"  th:text="${atividade.descricao}"  ></textarea></h6>
         </div>
     </div>
 
     <div class="row text-center">
         <div class="col">
-            <a class="btn btn-success" th:href="@{/membro/grupo/{id}(id=${atividade.grupo.id})}" >Voltar</a>
+            <a class="btn btn-primary" th:href="@{/membro/grupo/{id}(id=${atividade.grupo.id})}" >Voltar</a>
         </div>
     </div>
 
