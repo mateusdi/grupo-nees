@@ -104,44 +104,34 @@
 
 		</nav>
 	</header>
-	<div class="container shadow p-3 mb-5 bg-body rounded mt-5 p-4 ">
+	<div class="container shadow p-3 mb-5 bg-body rounded mt-5 ">
 	<main th:include="${conteudo}">
 		<!--Conteudo que vem da classe filha-->
 	</main>
 	</div>
 
-
-<div class="divrodape ">
-
 	<footer th:fragment="rodape"
-		class=" rodape bg-dark text-center text-white  ">
+			class=" rodape bg-dark text-center text-white  ">
 
-		<div class="container p-2 h-100">
+		<div class=" p-2 h-100">
 
 			<section >
 				<!-- Facebook -->
-				<a class="btn btn-outline-light btn-floating m-1" href="#!"
-					role="button"><i class="fab fa-facebook-f"></i></a>
-
-				<!-- Google -->
-				<a class="btn btn-outline-light btn-floating m-1" href="#!"
-					role="button"><i class="fab fa-google"></i></a>
+				<a class="btn btn-outline-light btn-floating mr-1" href="https://www.facebook.com/gruponees"
+				   role="button"><i class="fab fa-facebook-f"></i></a>
 
 				<!-- Instagram -->
-				<a class="btn btn-outline-light btn-floating m-1" href="#!"
-					role="button"><i class="fab fa-instagram"></i></a>
+				<a class="btn btn-outline-light btn-floating  " href="https://www.instagram.com/gruponees/"
+				   role="button"><i class="fab fa-instagram"></i></a>
 
 			</section>
-
-
-
 
 		</div>
 
 
 		<!-- Copyright -->
-		<div class="text-center p-3 "
-			style="background-color: rgba(0, 0, 0, 0.2);">© 2022 Copyright</div>
+		<div class="text-center  "
+			 style="background-color: rgba(0, 0, 0, 0.2);">© 2022 Copyright</div>
 		<!-- Copyright -->
 
 
@@ -154,7 +144,7 @@
 
 
 	</div>
-</div>
+
 	<!--/* Para links adicionais das páginas */-->
 
 	<th:block th:replace="${scripts}" />
