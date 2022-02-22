@@ -3,37 +3,34 @@ html, body {
     /*position: relative;*/
     margin: 0px;
     padding: 0px;
-
-
 }
 
-body{
+body {
     display: flex;
     flex-direction: column;
 }
 
-.conteudo{
+.conteudo {
     min-height: 100%;
     flex: 1 0 0 auto;
 }
 
 
-.carousel{
+.carousel {
     width: 70%;
 }
 
 
-
 @media (max-width: 767px) {
 
-    footer{
+    footer {
         position: absolute;
         bottom: 0;
         width: 100%;
     }
 
-    .carousel{
-    width: 100%;
+    .carousel {
+        width: 100%;
         height: 100%;
     }
 }
@@ -45,17 +42,17 @@ body{
 }
 
 
-.navbar-light .navbar-nav .nav-link{
+.navbar-light .navbar-nav .nav-link {
     color: white;
 }
 
-.btn-primary   {
+.btn-primary {
     color: #276561;
     background-color: #ffffff;
     border-color: #ffffff;
 }
 
-.btn-primary:hover   {
+.btn-primary:hover {
     color: #007bff;
     background-color: #ffffff;
     border-color: #ffffff;
@@ -71,10 +68,12 @@ body{
 }
 
 
-
-footer{
+footer {
     flex-shrink: 0;
+}
 
-
-
+.barrainferior{
+    color:white;
+    font-family: "Cambria";
+    font-size: 20px;
 }

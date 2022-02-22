@@ -104,8 +104,14 @@
 
 		</nav>
 	</header>
-	<div class="container shadow p-3 mb-5 bg-body rounded mt-5 ">
-	<main th:include="${conteudo}">
+
+	<div class="container shadow mb-5 bg-body rounded mt-5 ">
+		<div class="row barrainferior" style="background-color: #276561; ">
+			<div class="col-12 " th:include="${titulo}"></div>
+		</div>
+
+
+	<main class="p-3 " th:include="${conteudo}">
 		<!--Conteudo que vem da classe filha-->
 	</main>
 	</div>
