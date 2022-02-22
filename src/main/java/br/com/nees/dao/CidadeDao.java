@@ -9,7 +9,7 @@ import br.com.nees.model.Cidade;
 
 public interface CidadeDao extends JpaRepository<Cidade, Integer> {
 	
-	@Query(value = "SELECT * FROM cidade as c WHERE c.cod_estado = ?1", nativeQuery = true)
+	@Query(value = "SELECT * FROM cidade as c WHERE c.estado_id = ?1", nativeQuery = true)
 	List<Cidade> findAllCidadesIdEstado(Integer idEstado);
 
 }
