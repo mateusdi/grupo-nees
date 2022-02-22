@@ -15,6 +15,30 @@ public class HomeController {
 
 		return mv;
 	}
+	
+	@GetMapping( "/artigos")
+	public ModelAndView artigos() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("home/artigos");
+
+		return mv;
+	}
+	
+	@GetMapping( "/apoiadores")
+	public ModelAndView apoiadores() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("home/apoiadores");
+
+		return mv;
+	}
+	
+	@GetMapping( "/sobre")
+	public ModelAndView sobre() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("home/sobre");
+
+		return mv;
+	}
 
 	@GetMapping("/login")
 	public ModelAndView telaLogin() {

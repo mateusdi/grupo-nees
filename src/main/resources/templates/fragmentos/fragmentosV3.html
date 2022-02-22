@@ -68,13 +68,13 @@
 								<li class="nav-item  "><a class="nav-link "
 									aria-current="page" th:href="@{/}"><i class="fas fa-home fa-fw"
 										style="color: white"></i>Inicio</a></li>
-								<li class="nav-item"><a class="nav-link " href="#"><i
+								<li class="nav-item"><a class="nav-link " th:href="@{/artigos}"><i
 										class="fas fa-file-alt fa-fw" style="color: white"></i>Artigos</a>
 								</li>
-								<li class="nav-item"><a class="nav-link" href="#"><i
+								<li class="nav-item"><a class="nav-link"  th:href="@{/apoiadores}"><i
 										class="fas fa-hands-helping fa-fw" style="color: white"></i>Apoiadores</a>
 								</li>
-								<li class="nav-item"><a class="nav-link "href="#"><i
+								<li class="nav-item"><a class="nav-link "  th:href="@{/sobre}"><i
 										class="fas fa-address-card fa-fw" style="color: white"></i>
 										Sobre</a></li>
 
@@ -111,7 +111,7 @@
 		</div>
 
 
-	<main class="p-3 " th:include="${conteudo}">
+	<main class="pt-3 pb-3" th:include="${conteudo}">
 		<!--Conteudo que vem da classe filha-->
 	</main>
 	</div>
