@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br" th:replace="~{fragmentos/fragmentosAdminV3 :: layout (~{:: main},~{:: title},~{:: script})}"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Atividade</title>
+
+</head>
+<body>
+<main>
+
+    <div class="row">
+        <div class="col-6 form-group  ">
+            <h6 >Título: <div th:text="${atividade.titulo}"  th:remove="tag"></div></h6>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-6 form-group  ">
+            <h6 >Postada em: <div th:text="${#dates.format(atividade.dataCriacao, 'dd/MM/yyyy HH:mm')}"  th:remove="tag"></div></h6>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-6 form-group  ">
+            <h6 ><div th:text="${atividade.tipo.nome}"  th:remove="tag"></div> para o dia: <div th:text="${#dates.format(atividade.prazoEntrega, 'dd/MM/yyyy HH:mm')}"  th:remove="tag"></div></h6>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-6 form-group  ">
+            <h6 >Descrição: <textarea id="content"  th:text="${atividade.descricao}" ></textarea></h6>
+        </div>
+    </div>
+
+    <div class="row text-center">
+        <div class="col">
+            <a class="btn btn-success" th:href="@{/membro/grupo/{id}(id=${atividade.grupo.id})}" >Voltar</a>
+        </div>
+    </div>
+
+
+</main>
+
+
+<script th:src="@{/js/cidades.js}"></script>
+<script th:src="@{/js/jquery.mask.min.js}"></script>
+<script th:src="@{/js/mascaras.js}"></script>
+
+
+<script th:src="@{/summernote/summernote-bs4.min.js}"></script>
+<script th:src="@{/summernote/lang/summernote-pt-BR.js}"></script>
+
+
+<script>
+
+
+
+    $('#content').summernote({
+        tabsize: 2,
+        toolbar: [
+            ['view', ['fullscreen', 'codeview', 'help']]
+            ],
+        disableDragAndDrop: true,
+        height: 200,
+
+        lang: 'pt-BR'
+    });
+
+    $('#content').summernote('disable');
+
+</script>
+</body>
+</html>

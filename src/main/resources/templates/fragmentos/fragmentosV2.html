@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="https://www.thymeleaf.org">
+
+<head th:fragment="common_header(title,links,scripts)">
+<!-- Meta tags Obrigatórias -->
+
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta charset="utf-8" />
+
+<title th:replace="${title}">Nees</title>
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	th:href="@{/webjars/bootstrap/4.6.1/css/bootstrap.min.css}">
+<link rel="stylesheet"
+	th:href="@{/webjars/font-awesome/5.15.1/css/all.css}">
+
+<script th:src="@{/webjars/font-awesome/5.15.1/js/all.js}"
+	data-auto-replace-svg="nest"></script>
+
+
+<!--/* Para links adicionais das páginas */-->
+<th:block th:replace="${links}" />
+<th:block th:replace="${scripts}" />
+
+
+</head>
+
+<body>
+
+	<header th:fragment="header">
+		<!-- Cabeçalho -->
+		<nav class="navbar fixed-top navbar-expand-sm navbar-light shadow "
+			style="background-color: #66BB6A;">
+			<div class="container-fluid ">
+
+				<div class="row">
+					<!-- linha -->
+					<div class="col">
+						<!-- coluna 1 -->
+						<a class="navbar-brand " href="#"> <img
+							th:src="@{img/logoNees.svg}" alt="" width="50" height="50"
+							class="d-inline-block "> Nees
+						</a>
+
+						<button class="navbar-toggler" type="button"
+							data-toggle="collapse" data-target="#navbarTogglerDemo02"
+							aria-controls="navbarTogglerDemo02" aria-expanded="false"
+							aria-label="Toggle navigation">
+							<span class="navbar-toggler-icon"></span>
+						</button>
+					</div>
+					<!-- fim da coluna 1 -->
+
+					<div class="col">
+						<!-- coluna 2 -->
+						<div class="collapse navbar-collapse " id="navbarTogglerDemo02">
+							<ul class="navbar-nav ml-auto ">
+								<li class="nav-item  "><a class="nav-link "
+									aria-current="page" href="#"><i class="fas fa-home fa-fw"
+										style="color: white"></i>Inicio</a></li>
+								<li class="nav-item"><a class="nav-link " href="#"><i
+										class="fas fa-file-alt fa-fw" style="color: white"></i>Artigos</a>
+								</li>
+								<li class="nav-item"><a class="nav-link" href="#"><i
+										class="fas fa-hands-helping fa-fw" style="color: white"></i>Apoiadores</a>
+								</li>
+								<li class="nav-item"><a class="nav-link " href="#"><i
+										class="fas fa-address-card fa-fw" style="color: white"></i>
+										Sobre</a></li>
+								<button type="submit" class="btn btn-primary  btn-block">Login</button>
+							</ul>
+						</div>
+					</div>
+					<!-- fim da coluna 2 -->
+
+				</div>
+				<!-- fim da linha -->
+			</div>
+
+		</nav>
+	</header>
+
+
+
+	<!-- Footer -->
+	<footer th:fragment="rodape"
+		class="mt-auto bg-dark text-center text-white ">
+		<!-- Grid container -->
+		<div class="container p-4">
+			<!-- Section: Social media -->
+			<section class="mb-4">
+				<!-- Facebook -->
+				<a class="btn btn-outline-light btn-floating m-1" href="#!"
+					role="button"><i class="fab fa-facebook-f"></i></a>
+
+				<!-- Google -->
+				<a class="btn btn-outline-light btn-floating m-1" href="#!"
+					role="button"><i class="fab fa-google"></i></a>
+
+				<!-- Instagram -->
+				<a class="btn btn-outline-light btn-floating m-1" href="#!"
+					role="button"><i class="fab fa-instagram"></i></a>
+
+			</section>
+			<!-- Section: Social media -->
+
+
+			<!-- Section: Text -->
+			<section class="mb-4">
+				<p>rodapé</p>
+			</section>
+			<!-- Section: Text -->
+
+		</div>
+		<!-- Grid container -->
+
+		<!-- Copyright -->
+		<div class="text-center p-3"
+			style="background-color: rgba(0, 0, 0, 0.2);">© 2021 Copyright
+			Mateus Dias dos Santos</div>
+		<!-- Copyright -->
+
+
+	</footer>
+
+
+	<div th:fragment="scripts" th:remove="tag">
+		<!-- JavaScript -->
+		<script th:src="@{/webjars/jquery/3.5.1/jquery.slim.min.js}"></script>
+		<script th:src="@{/webjars/bootstrap/4.6.1/js/bootstrap.bundle.min.js}"></script>
+
+
+	</div>
+
+
+
+</body>
+</html>

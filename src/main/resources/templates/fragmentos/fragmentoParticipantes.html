@@ -1,0 +1,8 @@
+
+
+<div th:fragment="participantes" >
+       <select  style="width: 100% !important;" class=" js-example-basic-single form-control"  title="Selecione um Membro" name="membro" value="membro" data-live-search="true" data-size="5" >
+
+              <option th:each="membro: ${todosMembros}" th:value="${membro.id}" th:text="${membro.nome}"></option>
+       </select>
+</div>

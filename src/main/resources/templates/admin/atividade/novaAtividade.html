@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br" th:replace="~{fragmentos/fragmentosAdminV3 :: layout (~{:: main},~{:: title},~{:: script})}"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Nova Atividade</title>
+
+</head>
+<body>
+<main>
+    <form th:action="@{/membro/grupo/{id}/novaAtividade(id=${id})} " autocomplete="off" id="formulario" method="post" th:object="${atividadeNovoDto}">
+
+        <div class="row">
+            <div class="col-3 form-group  ">
+                <label>tipo:</label>
+                <select th:errorclass="is-invalid" class="selectpicker form-control" data-live-search="true" data-size="5"
+                        th:field="*{tipo}" title="Selecione uma opção" required>
+
+                    <option th:each="tipo: ${tipos}" th:selected=" ${atividadeNovoDto.tipo} != null ? ${tipo.nome} == *{tipo.nome}" th:text="${tipo.nome}"
+                            th:value="${tipo.id}"></option>
+                </select>
+                <div class="invalid-feedback" th:errors="*{tipo}"></div>
+
+            </div>
+        </div>
+        <div class="row ">
+
+
+            <div class="col-6 form-group  ">
+                <label>Título:</label>
+                <input th:errorclass="is-invalid" class="form-control" th:field="*{titulo}" required>
+                <div class="invalid-feedback" th:errors="*{titulo}"></div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col form-group  ">
+                <label>Descricao:</label>
+                <textarea class="form-control" id="content" th:field="*{descricao}"></textarea>
+            </div>
+
+        </div>
+
+        <div class="row text-center">
+            <div class="col-6 form-group  ">
+                <label >Data: </label>
+                <input required th:errorclass="is-invalid" th:attr="min=${minData}" type="datetime-local" class="form-control" th:field="*{prazoEntrega}">
+                <div class="invalid-feedback" th:errors="*{prazoEntrega}"></div>
+            </div>
+
+
+            
+        </div>
+
+        <div class="row text-center">
+            <div class=" col ">
+                <button class="btn btn-success" type="submit">Salvar</button>
+            </div>
+        </div>
+
+    </form>
+</main>
+
+
+
+
+<script th:src="@{/js/cidades.js}"></script>
+<script th:src="@{/js/jquery.mask.min.js}"></script>
+<script th:src="@{/js/mascaras.js}"></script>
+
+
+<script th:src="@{/summernote/summernote-bs4.min.js}"></script>
+<script th:src="@{/summernote/lang/summernote-pt-BR.js}"></script>
+<script th:src="@{/js/summernoteConfig.js}"></script>
+</body>
+</html>

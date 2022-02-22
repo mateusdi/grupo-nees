@@ -1,0 +1,12 @@
+@charset "UTF-8";
+*{margin: 0; padding:0; box-sizing: border-box;}
+nav{height: 115px; color: #ffffff;}
+a{cursor:pointer; font-weight: bold;}
+.neo-section{
+	min-height: 700px;
+	background-size: cover !important;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+

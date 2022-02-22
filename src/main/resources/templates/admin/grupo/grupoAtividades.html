@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br" th:replace="~{fragmentos/fragmentosAdminV3 :: layout (~{:: main},~{:: title},~{:: script})}"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Atividades do grupo</title>
+</head>
+<body>
+<main>
+    <div class="row  mb-2 ">
+        <div class="col-xs-3 mr-1 mb-1">
+            <div th:if="${isCoordenador} == false">
+                <div sec:authorize="hasRole('ADMIN')">
+                    <a class="btn btn-primary" th:href="@{/membro/grupo/{id}/novaAtividade(id=${grupoId})}">
+                        <i class="fa fa-plus-circle"></i> Nova Atividade
+                    </a>
+                </div>
+
+
+            </div>
+
+            <div th:if="${isCoordenador} == true">
+                <!--verificar seo o usuario autenticado é admin do grupo-->
+
+                <a class="btn btn-primary" th:href="@{/membro/grupo/{id}/novaAtividade(id=${grupoId})}">
+                    <i class="fa fa-plus-circle"></i> Nova Atividade
+                </a>
+
+            </div>
+        </div>
+
+        <div sec:authorize="hasRole('ADMIN')">
+            <div class="col-xs-3 ">
+                <a class="btn btn-primary"
+                   th:href="@{/membro/admin/grupo/membroGrupo/participantes/{id}(id=${grupo.id})}">
+                    <i class="fa fa-users"></i> Participantes do Grupo
+                </a>
+            </div>
+        </div>
+
+        <!--        <div class="col-3">-->
+        <!--            <a class="btn btn-primary" th:href="@{/membro/grupo/atividade/frequencia/{id}(id=${id})}">-->
+        <!--                <i class="fa fa-list"></i> Frequencia-->
+        <!--            </a>-->
+        <!--        </div>-->
+
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <table class="table table-hover table-responsive ">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Atividade</th>
+                    <th>Data</th>
+                    <th>Ações</th>
+
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr class="table-row" scope="row" th:data-href="@{/membro/grupo/atividades/{id}(id=${atividade.id})}"
+                    th:each="atividade : ${atividades}">
+                    <td class="col-4" th:text="${atividade.titulo}"></td>
+                    <td class="col-2" th:text="${#dates.format(atividade.prazoEntrega, 'dd/MM/yyyy HH:mm')}"></td>
+                    <td class="col-1 ">
+                        <div class="row ">
+                            <div th:if="${isCoordenador} == false">
+                                <div sec:authorize="hasRole('ADMIN')">
+                                    <a class="col-xs-6 m-1  btn btn-primary btn-sm  "
+                                       th:href="@{/membro/grupo/editaAtividade/{id}(id=${atividade.id})}">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div th:if="${isCoordenador} == true">
+                                <!--verificar seo o usuario autenticado é admin do grupo-->
+
+                                <a class="col-xs-6 m-1  btn btn-primary btn-sm  "
+                                   th:href="@{/membro/grupo/editaAtividade/{id}(id=${atividade.id})}">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+
+                            </div>
+                            <a class="col-xs-6 m-1 btn btn-primary btn-sm"
+                               th:href="@{/membro/grupo/atividades/{id}(id=${atividade.id})}">
+                                <i class="fas fa-eye"></i>
+                            </a>
+
+                        </div>
+                    </td>
+                </tr>
+
+
+                </tbody>
+
+            </table>
+
+
+        </div>
+    </div>
+
+</main>
+
+
+<script th:src="@{/js/utils.js}"></script>
+<script th:src="@{/js/cidades.js}"></script>
+<script th:src="@{/js/jquery.mask.min.js}"></script>
+<script th:src="@{/js/mascaras.js}"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br" th:replace="~{fragmentos/fragmentosAdminV3 :: layout (~{:: main},~{:: title},~{:: script})}"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Editar Grupo</title>
+</head>
+<body>
+<main>
+    <form id="formulario" method="post"
+          th:action="@{/membro/admin/grupo/atualizaGrupo/{grupoId}(grupoId = ${grupo.id})} " th:object="${grupo}">
+
+
+        <div class="row">
+            <div class="col-md-6 form-group  ">
+                <label>Nome:</label>
+                <input class="form-control" th:errorclass="is-invalid" th:field="*{nome}">
+                <div class="invalid-feedback" th:errors="*{nome}"></div>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 form-group  ">
+                <label>Descricao:</label>
+                <textarea class="form-control" th:field="*{descricao}"></textarea>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 form-group  ">
+                <label>Status:</label>
+                <select class="form-control" th:field="*{status}">
+                    <option th:each="status: ${T(br.com.nees.enums.Status).values()}" th:text="${status}"
+                            th:value="${status}"></option>
+                </select>
+            </div>
+        </div>
+
+        <a class="btn btn-primary" th:href="@{/membro/admin/grupo/membroGrupo/participantes/{id}(id=${grupo.id})}">
+            <i class="fas fa-edit"></i> editar
+        </a>
+
+
+        <div class="row">
+            <div class=" col-md offset-sm-3 offset-md-6">
+                <button class="btn btn-success" type="submit">Salvar</button>
+            </div>
+        </div>
+
+    </form>
+</main>
+
+<script th:src="@{/js/cidades.js}"></script>
+<script th:src="@{/js/jquery.mask.min.js}"></script>
+<script th:src="@{/js/mascaras.js}"></script>
+
+
+</body>
+</html>

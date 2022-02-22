@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br" th:replace="~{fragmentos/fragmentosAdminV3 :: layout (~{:: main},~{:: title},~{:: script})}"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Membros</title>
+</head>
+<body>
+<main>
+    <div class="row">
+        <div class="col">
+            <table class="table table-hover table-responsive">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">CPF</th>
+                    <th scope="col">Status</th>
+                    <th scope="col"></th>
+
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr class="table-row" scope="row" th:data-href="@{/membro/admin/detalhesMembro/{id}(id=${membro.id})}"
+                    th:each="membro : ${membros}">
+                    <td class="col-3" th:text="${membro.nome}"></td>
+                    <td class="col-1" th:text="${membro.email}"></td>
+                    <td class="col-1" th:text="${membro.cpf}"></td>
+                    <td class="col-1" th:text="${membro.status} "></td>
+
+                    <td class="col-1 ">
+                        <div class="row ">
+
+                                <a class="col-xs-6 m-1  btn btn-primary btn-sm "
+                                   th:href="@{/membro/admin/editarMembro/{id}(id=${membro.id})}">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+
+
+                                <a class="col-xs-6 m-1 btn btn-primary btn-sm" th:href="@{/membro/admin/detalhesMembro/{id}(id=${membro.id})}">
+                                    <i class="fas fa-eye"></i>
+                                </a>
+
+                        </div>
+                    </td>
+
+
+                </tr>
+                </tbody>
+
+            </table>
+
+            <a class="btn btn-primary" th:href="@{/membro/admin/novoMembro}">
+                <i class="fa fa-plus-circle"></i> Novo Membro
+            </a>
+        </div>
+    </div>
+
+</main>
+
+<script th:src="@{/js/utils.js}"></script>
+<script th:src="@{/js/cidades.js}"></script>
+<script th:src="@{/js/jquery.mask.min.js}"></script>
+<script th:src="@{/js/mascaras.js}"></script>
+
+
+</body>
+</html>

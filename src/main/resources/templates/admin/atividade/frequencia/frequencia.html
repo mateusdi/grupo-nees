@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br" th:replace="~{fragmentos/fragmentosAdminV3 :: layout (~{:: main},~{:: title},~{:: script})}"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Grupos</title>
+</head>
+<body>
+<main>
+    <form th:action="@{/membro/grupo/atividade/frequencia/{id}(id=${id})}" autocomplete="off" id="formulario" method="post" th:object="${frequenciaMembro}">
+        <table class=" table table-bordered table-responsive ">
+
+
+            <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Presente</th>
+            </tr>
+            </thead>
+
+            <tbody>
+
+            <tr th:each="membro : ${membros}">
+                <td th:text="${membro.nome}"></td>
+
+                <td>
+                    <input type="checkbox" >
+<!--                    <input th:nome="*{frequenciaMembro[0]}" value="${frequenciaMembro.presente}" type="checkbox">-->
+                </td>
+            </tr>
+
+            </tbody>
+
+        </table>
+
+        <div class="col-6 ">
+            <button class="btn btn-primary" type="submit">Salvar</button>
+        </div>
+
+    </form>
+
+</main>
+
+<script th:src="@{/js/utils.js}"></script>
+<script th:src="@{/js/cidades.js}"></script>
+<script th:src="@{/js/jquery.mask.min.js}"></script>
+<script th:src="@{/js/mascaras.js}"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,7 @@
+
+
+<div th:fragment="cidades" >
+       <select class="selectpicker form-control" data-live-search="true" data-size="5"   th:field="${membro.enderecos[0].cidade}">
+       <option  th:each="cidade: ${cidades}" th:value="${cidade.id}" th:text="${cidade.nome}"></option>
+       </select>
+</div>

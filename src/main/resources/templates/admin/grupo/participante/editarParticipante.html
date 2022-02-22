@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br" th:replace="~{fragmentos/fragmentosAdminV3 :: layout (~{:: main},~{:: title},~{:: script})}"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Editar Participante</title>
+</head>
+<body>
+<main>
+    <form id="formulario" method="post" th:action="@{/membro/admin/grupo/membroGrupo/atualiza}"
+          th:object="${membroGrupo}">
+        <div class="form-group">
+
+            <input th:field="*{id}" type="hidden">
+            <input th:field="*{grupo}" type="hidden">
+            <input th:field="*{membro}" type="hidden">
+
+            <div class="row">
+                <div class="col-6">
+                    <label>Nome:</label>
+                    <input class="form-control" readonly th:value="*{membro.nome}">
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-3 form-group  ">
+                    <label>Atribuição no Grupo:</label>
+                    <select class="form-control" th:field="*{atribuicaoMembro}">
+                        <option th:each="atribuicao: ${T(br.com.nees.enums.Atribuicao).values()}"
+                                th:text="${atribuicao.getAtribuicao}"
+                                th:value="${atribuicao}"></option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row  ">
+                <div class="col-6 text-right ">
+                    <a class="btn btn-primary"
+                       th:href="@{/membro/admin/grupo/membroGrupo/participantes/{id}(id=${membroGrupo.grupo.id})}">Voltar</a>
+                </div>
+                <div class="col-6 ">
+                    <button class="btn btn-primary" type="submit">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</main>
+
+<script th:src="@{/js/cidades.js}"></script>
+<script th:src="@{/js/jquery.mask.min.js}"></script>
+<script th:src="@{/js/mascaras.js}"></script>
+
+
+</body>
+</html>

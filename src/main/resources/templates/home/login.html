@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="https://www.thymeleaf.org" >
+
+<head>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8" />
+    <title>Login</title>
+
+    <link rel="stylesheet"
+          th:href="@{/webjars/bootstrap/4.6.1/css/bootstrap.min.css}">
+
+    <link rel="stylesheet" th:href="@{/css/styleLogin.css}">
+</head>
+<body >
+
+    <div class="caixa " >
+        <div class="row ">
+            <div class="col align-self-center shadow-lg  mb-5 bg-white border pb-3 pt-0 rounded ">
+
+                <form method="post" th:action="@{/login}" >
+                    <div class="row text-center justify-content-md-center " >
+                        <div class="col-lg-5 shadow-sm border border-top-0 "  >
+                            <img th:src="@{img/logoNees.svg}" alt="" width="45" height="45"
+                                    class="d-inline-block ">
+                            <label>Login</label>
+                        </div>
+                    </div>
+
+                    <div class="row pt-2  text-center">
+                        <div class="col">
+                            <div class="alert alert-danger" role="alert" th:if="${param.error}"><strong  >Login não encontrado!</strong></div>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-12">
+                            <label>Email: </label>
+                        </div>
+                        <div class="col">
+                            <input type="email" name="email" class="form-control" >
+                        </div>
+                    </div>
+
+
+                    <div class="row mt-3">
+                        <div class="col-12">
+                            <label>Senha: </label>
+                        </div>
+                        <div class="col">
+                            <input type="password" name="senha" class="form-control" >
+                        </div>
+                    </div>
+
+<!--                    <input type="checkbox" name="remember-me" />-->
+
+
+
+
+                        <div class="row text-center mt-3 justify-content-md-center">
+                            <div class="col-lg-5">
+                                <button type="submit" class="btn btn-primary  btn-block py-1">Entrar</button>
+                            </div>
+
+                        </div>
+                    <div class="row text-center mt-2 justify-content-md-center">
+
+                        <div class="col-lg-5">
+                            <a  class="btn btn-primary  btn-block py-1" th:href="@{/}">Voltar</a>
+                        </div>
+                    </div>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

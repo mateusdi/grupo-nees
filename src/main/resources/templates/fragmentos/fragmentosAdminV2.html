@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="https://www.thymeleaf.org">
+
+<head th:fragment="common_header(title,links,scripts)">
+<!-- Meta tags Obrigatórias -->
+
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta charset="utf-8" />
+
+<title th:replace="${title}">Nees</title>
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+<link rel="stylesheet"
+	th:href="@{/webjars/font-awesome/5.15.1/css/all.css}">
+
+
+
+
+
+<script th:src="@{/webjars/font-awesome/5.15.1/js/all.js}"
+	data-auto-replace-svg="nest"></script>
+
+	<link th:href="@{/css/styleAdmin.css}" rel="stylesheet">
+
+
+
+<!--/* Para links adicionais das páginas */-->
+<th:block th:replace="${links}" />
+<th:block th:replace="${scripts}" />
+
+
+</head>
+
+<body>
+<!--se nada der certo, eu crio os row e col em cada pagina e passo os menus dentro deles.-->
+
+
+<div class="row" >
+	<div class="col " >
+
+		<nav class="navbar fixed-top navbar-expand-md navbar-light shadow menu1" style="background-color:#66BB6A;">
+
+			<div class="container-fluid ">
+
+				<a class="navbar-brand " href="#">
+					<img src="logo4.svg" alt="" width="50" height="50" class="d-inline-block ">
+					Nees
+				</a>
+
+				<a >
+					<i class="fas fa-bell " style="color:white;"></i> <span class="badge badge-light ">4</span>
+				</a>
+
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Alterna navegação">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+			</div>
+		</nav>
+
+	</div>
+
+</div>
+<div class="row h-100" >
+	<div class=" col-sm-0 col-md-2 p-0  navbar-dark bg-dark h-100 "   > <!--tem que tirar o espaçamento da div-->
+
+		<nav class="navbar navbar-expand-md navbar-dark bg-dark menuLateral">
+
+			<div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+				<ul class="navbar-nav  d-block">
+					<li class="nav-item">
+						<a class="nav-link" href="#">Inicio <span class="sr-only">(Página atual)</span></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link " href="#">Perfil</a>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+							Grupos
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="#">Meus Grupos</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="#">Novo Grupo</a>
+							<a class="dropdown-item" href="#">Todos os Grupos</a>
+						</div>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link " href="#">Cronograma</a>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+							Artigos
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="#">Action</a>
+							<a class="dropdown-item" href="#">Another action</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="#">Something else here</a>
+						</div>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+							Relatórios
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="#">Action</a>
+							<a class="dropdown-item" href="#">Another action</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="#">Something else here</a>
+						</div>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link " href="#">Sair</a>
+					</li>
+
+
+
+				</ul>
+
+			</div>
+		</nav>
+	</div>
+	<div class="col-sm-12 col-md-10  mt-2">
+		<div class="row" style="background-color: #66BB6A; ">
+			<div class="col-12 ">Titulo</div>
+		</div>
+
+		<div class ="container shadow p-3 mb-5 bg-white rounded">
+			o o seu amor. Por fim, os seis meses haviam passado e nada havia brotado. Consciente do seu esforço e dedicação a moça comunicou a sua mãe que, independente das circunstâncias retornaria ao palácio, na data e hora combinadas, pois não pretendia nada além de mais alguns momentos na companhia do príncipe. Na hora marcada estava lá, com seu vaso vazio, bem como todas as outras pretendentes, cada uma com uma flor mais bela do que a outra, das mais variadas formas e cores. Ela estava admirada, nunca havia presenciado tão bela cena.
+		</div>
+	</div>
+</div>
+
+
+
+<div th:fragment="scripts" th:remove="tag">
+		<!-- JavaScript -->
+		<script th:src="@{/webjars/jquery/3.5.1/jquery.js}"></script>
+		<script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+		<script th:src="@{/webjars/select2/4.0.13/js/select2.min.js}"></script>
+
+
+
+	</div>
+
+
+
+</body>
+</html>

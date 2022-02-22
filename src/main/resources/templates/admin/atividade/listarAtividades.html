@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="https://www.thymeleaf.org" th:replace="~{fragmentos/fragmentosAdminV3 :: layout (~{:: main},~{:: title},~{:: script})}">
+<head >
+    <title>Grupos</title>
+</head>
+<body>
+<main>
+
+    <table class="table table-bordered table-hover table-responsive">
+        <thead>
+
+        <th scope="col">Nome</th>
+<!--        <th scope="col">Postado em</th>-->
+        <th scope="col">Data de Entrega</th>
+
+        <th scope="col">Ação</th>
+        </thead>
+
+        <tbody>
+        <tr scope="row" th:each="atividade : ${atividades}">
+            <td th:text="${atividade.titulo}"></td>
+<!--            <td th:text=" ${#dates.format(atividade.dataCriacao, 'dd-MM-yyyy HH:mm')} "></td>-->
+            <td th:text=" ${#dates.format(atividade.prazoEntrega, 'dd-MM-yyyy HH:mm')}"></td>
+<!--            <td th:text=" ${#calendars.format(#calendars.createNow(), 'dd-MM-yyyy HH:mm')} > ${#dates.format(atividade.prazoEntrega, 'dd-MM-yyyy HH:mm')}  "></td>-->
+            <td th:text="${atividade.descricao}"></td>
+
+
+
+            <td>
+                <a class="btn btn-primary" th:href="@{/grupo/editarGrupo/{id}(id=${grupoId})}">
+                    <i class="fas fa-edit"></i> editar
+                </a>
+            </td>
+        </tr>
+        </tbody>
+
+    </table>
+
+</main>
+
+<script th:src="@{/js/utils.js}"></script>
+<script th:src="@{/js/cidades.js}"></script>
+<script th:src="@{/js/jquery.mask.min.js}"></script>
+<script th:src="@{/js/mascaras.js}"></script>
+
+
+
+
+</body>
+</html>

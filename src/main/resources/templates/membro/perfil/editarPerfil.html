@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-br" th:replace="~{fragmentos/fragmentosAdminV3 :: layout (~{:: main},~{:: title},~{:: script})}"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Editar Perfil</title>
+</head>
+<body>
+<main>
+    <div class="row pt-2  text-center alerta"  th:if="${param.sucess}">
+        <div class="col">
+            <div class="alert alert-success" role="alert"><strong>Salvo!</strong></div>
+        </div>
+    </div>
+
+    <form id="formulario" method="post" th:action="@{/membro/atualizaPerfil} " th:object="${membroPerfilDto}">
+
+        <div class="row">
+            <div class="col-md-6 form-group  ">
+                <label>Nome:</label>
+                <input class="form-control " placeholder="Ex: João" th:errorclass="is-invalid" th:field="*{nome}" >
+                <div class="invalid-feedback" th:errors="*{nome}"></div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 form-group  ">
+                <label>CPF:</label>
+                <input class="form-control" th:errorclass="is-invalid" th:field="*{cpf}" type="tel" required>
+                <div class="invalid-feedback" th:errors="*{cpf}"></div>
+            </div>
+
+            <div class="col-md-4 form-group  ">
+                <label>RG:</label>
+                <input class="form-control" th:errorclass="is-invalid" th:field="*{rg}" required>
+                <div class="invalid-feedback" th:errors="*{rg}"></div>
+            </div>
+
+            <div class="col-md-4 form-group  ">
+                <label>Orgao Emissor:</label>
+                <select class="selectpicker form-control" data-live-search="true" data-size="5"
+                        th:errorclass="is-invalid" th:field="*{orgaoExpedidor}" title="Selecione uma opção" required>
+
+                    <option th:each="expedidor: ${expedidores}" th:selected=" ${membroPerfilDto.orgaoExpedidor} != null ? ${expedidor.nome} == *{orgaoExpedidor.nome}" th:text="${expedidor.nome}"
+                            th:value="${expedidor.id}"></option>
+                </select>
+                <div class="invalid-feedback" th:errors="*{orgaoExpedidor}"></div>
+
+            </div>
+
+            <div class="col-md-4 form-group">
+                <label>Nascimento:</label>
+                <input class="form-control" th:attr="max=${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}"
+                       th:errorclass="is-invalid"
+                       th:field="*{nascimento}" type="date">
+                <div class="invalid-feedback" th:errors="*{nascimento}"></div>
+            </div>
+
+            <div class="col-md-4 form-group  ">
+                <label>Sexo:</label>
+                <select class="selectpicker form-control" data-live-search="true" data-size="5"
+                        th:field="*{sexo}" title="Selecione uma opção">
+
+                    <option th:each="sexo: ${sexos}" th:selected=" ${membroPerfilDto.sexo} != null ? ${sexo.nome} == *{sexo.nome}" th:text="${sexo.nome}"
+                            th:value="${sexo.id}"></option>
+                </select>
+
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
+            <div class="col-md-6 form-group  ">
+                <label>Email:</label>
+                <input class="form-control" readonly placeholder="Ex: joao@gmail.com" th:errorclass="is-invalid" th:field="*{email}" type="email">
+                <div class="invalid-feedback" th:errors="*{email}"></div>
+            </div>
+
+            <div class="col-md-6 form-group ">
+
+                <label>Celular:</label>
+                <input class="form-control" placeholder="(xx)x xxxx-xxxx" id="celular" th:field="*{telefones[0].numero}" type="tel">
+
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
+
+            <div class="col-md-6 form-group  ">
+                <label>Endereço:</label>
+                <input class="form-control" th:field="*{endereco.logradouro}">
+            </div>
+
+            <div class=" col-md-3 form-group  ">
+                <label>Número:</label>
+                <input class="form-control" th:field="*{endereco.numero}" type="number">
+            </div>
+
+            <div class=" col-md-3 form-group   ">
+                <label>Complemento:</label>
+                <input class="form-control" th:field="*{endereco.complemento}">
+            </div>
+
+            <div class="col-md-6 form-group  ">
+                <label>Bairro:</label>
+                <input class="form-control" th:field="*{endereco.bairro}">
+            </div>
+
+            <div class="col-md-3 form-group ">
+                <label>Cidade:</label>
+                <select class="selectpicker form-control"
+                        data-live-search="true" data-none-selected-text="Selecione uma cidade" data-size="5"
+                        id="cidades" name="cidades"
+                        th:disabled="${membroPerfilDto.endereco.cidade} != null ? *{endereco.cidade.id} == null "
+                        th:field="*{endereco.cidade}">
+
+                    <option th:each="cidade: ${cidades}"
+                            th:selected="${membroPerfilDto.endereco.cidade} != null ? ${cidade.id} == *{endereco.cidade.id}"
+                            th:text="${cidade.nome}" th:value="${cidade.id}"></option>
+                </select>
+            </div>
+
+            <div class="col-md-3 form-group  ">
+                <label>UF:</label>
+                <select class="selectpicker form-control" data-live-search="true" data-size="5"
+                        id="estados" name="estados" title="Selecione um Estado">
+
+                    <option th:each="estado: ${estados}"
+                            th:selected="${membroPerfilDto.endereco.cidade} != null ? ${estado.id} == *{endereco.cidade.estado.id}"
+                            th:text="${estado}" th:value="${estado.id}"></option>
+                </select>
+            </div>
+        </div>
+
+        <hr>
+
+
+        <div class="row">
+            <div class="col-md-6 form-group ">
+                <label>Lattes:</label>
+                <input class="form-control" type="url"  placeholder="http://www.exemplo.com">
+            </div>
+        </div>
+
+        <div class="row text-center">
+            <div class="col">
+                <button class="btn btn-success" type="submit">Salvar</button>
+            </div>
+        </div>
+
+    </form>
+
+
+
+</main>
+
+
+
+<script th:src="@{/js/cidades.js}"></script>
+<script th:src="@{/js/jquery.mask.min.js}"></script>
+<script th:src="@{/js/mascaras.js}"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+html, body {
+    height: 100%;
+}
+
+
+.navbar-light .navbar-brand {
+    color: white;
+    font-family: "Cambria";
+    font-size: 25px;
+}
+
+
+.navbar-light .navbar-nav .nav-link{
+    color: white;
+}
+
+.btn-primary   {
+    color: #276561;
+    background-color: #ffffff;
+    border-color: #ffffff;
+}
+
+.btn-primary:hover   {
+    color: #007bff;
+    background-color: #ffffff;
+    border-color: #ffffff;
+}
+
+.mt-5 {
+    margin-top: 95px !important;
+}
+
+
+.navbar .navbar-collapse {
+    text-align: center;
+}
+
+footer{
+
+    clear: both;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}

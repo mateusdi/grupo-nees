@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="https://www.thymeleaf.org" th:replace="~{fragmentos/fragmentosAdminV3 :: layout (~{:: main},~{:: title},~{:: script})}">
+<head >
+<title>Editar Perfil</title>
+</head>
+<body>
+<main>
+
+	
+    <form id="formulario" method="post"  th:action="@{/atualizaPerfil/{membroId}(membroId = ${membroId})} " th:object="${membroPerfilDto}" >
+        
+
+        <div class="row">
+            <div class="col-md-6 form-group  ">
+                <label>Nome:</label>
+                <input class="form-control "  placeholder="Ex: João" th:field="*{nome}" th:errorclass="is-invalid">
+                <div class="invalid-feedback" th:errors="*{nome}"></div>
+            </div>
+            <div class="col-md-6 form-group  ">
+                <label>Sobrenome:</label>
+                <input class="form-control" placeholder="Ex: Silva" >
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 form-group  ">
+                <label>CPF:</label>
+                <input type="tel"  th:errorclass="is-invalid" class="form-control"  th:field="*{cpf}" >
+                <div class="invalid-feedback" th:errors="*{cpf}"></div>
+            </div>
+
+            <div class="col-md-4 form-group  ">
+                <label>RG:</label>
+                <input  class="form-control"  th:field="*{rg}">
+                <div class="invalid-feedback" th:errors="*{rg}"></div>
+            </div>
+
+            <div class="col-md-6 form-group  ">
+                <label>Orgao Emissor:</label>
+                <select class="selectpicker form-control"  title="Selecione uma opção" data-live-search="true" data-size="5" th:field="*{orgaoExpedidor}">
+
+                    <option th:each="expedidor: ${expedidores}" th:value="${expedidor.id}" th:text="${expedidor.nome}"></option>
+                </select>
+
+            </div>
+
+            <div class="col-md-4 form-group">
+                <label>Nascimento:</label>
+                <input class="form-control" th:errorclass="is-invalid" type="date" th:attr="max=${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}"  th:field="*{nascimento}">
+                <div class="invalid-feedback" th:errors="*{nascimento}"></div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 form-group  ">
+                <label>Sexo:</label>
+                <select class="selectpicker form-control"  title="Selecione uma opção" data-live-search="true" data-size="5" th:field="*{sexo}">
+
+                    <option  th:each="sexo: ${sexos}" th:selected="${sexo.nome} == *{sexo.nome}" th:value="${sexo.id}" th:text="${sexo.nome}"></option>
+                </select>
+
+            </div>
+
+
+
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-6 form-group  ">
+                <label>Email:</label>
+                <input class="form-control" th:errorclass="is-invalid" type="email" placeholder="Ex: joao@gmail.com" th:field="*{email}">
+                <div class="invalid-feedback" th:errors="*{email}"></div>
+            </div>
+
+    
+
+            <div class="col-md-6 form-group ">
+                <label>Lattes:</label>
+                <input class="form-control" type="url"  >
+            </div>
+        </div>
+
+        <hr>
+
+
+        <div class="row">
+
+            <div class="col-md-6 form-group  ">
+                <label>Endereço:</label>
+                <input class="form-control"  th:field="*{endereco.logradouro}">
+            </div>
+
+            <div class=" col-md-3 form-group  ">
+                <label>Número:</label>
+                <input type="number" class="form-control"  th:field="*{endereco.numero}">
+            </div>
+
+            <div class=" col-md-3 form-group   ">
+                <label>Complemento:</label>
+                <input class="form-control"  th:field="*{endereco.complemento}">
+            </div>
+
+            <div class="col-md-6 form-group  ">
+                <label>Bairro:</label>
+                <input class="form-control"  th:field="*{endereco.bairro}">
+            </div>
+
+            <div class="col-md-3 form-group ">
+                <label >Cidade:</label>
+                <select  th:disabled="*{endereco.cidade.id} == null ". name="cidades" id="cidades" class="selectpicker form-control"  data-none-selected-text="Selecione uma cidade" data-live-search="true" data-size="5"  th:field="*{endereco.cidade}">
+
+                    <option  th:each="cidade: ${cidades}" th:selected="${cidade.id} == *{endereco.cidade.id}" th:value="${cidade.id}" th:text="${cidade.nome}"></option>
+
+                </select>
+
+<!--                <div id="resultCidades" th:include="fragmentos/fragmentoCidades :: cidades"></div>-->
+
+            </div>
+
+            <div class="col-md-3 form-group  ">
+                <label>UF:</label>
+                <select class="selectpicker form-control"  title="Selecione um Estado" data-live-search="true" data-size="5" name="estados" id="estados"   th:field="*{endereco.cidade.estado}">
+
+                    <option th:each="estado: ${estados}" th:selected="${estado.id} == *{endereco.cidade.estado.id}"  th:value="${estado.id}" th:text="${estado}"></option>
+                </select>
+            </div>
+
+        </div>
+
+      <div class="col-md-6 form-group ">
+                <input type="hidden" th:field="*{telefones[0].id}">
+                <label>Celular:</label>
+                <input type="tel"class="form-control" placeholder="(xx)x xxxx-xxxx" th:field="*{telefones[0].numero}" >
+            </div>
+
+        <div class="row">
+            <div class=" col-md offset-sm-3 offset-md-6" >
+            <button type="submit" class="btn btn-success">Salvar</button>
+            </div>
+        </div>
+
+    </form>
+</main>
+
+<script th:src="@{/js/cidades.js}"></script>
+ <script th:src="@{/js/jquery.mask.min.js}"></script>
+<script th:src="@{/js/mascaras.js}"></script> 
+
+
+
+
+</body>
+</html>

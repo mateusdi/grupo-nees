@@ -1,0 +1,86 @@
+html, body{
+    height: 100%;
+}
+
+body{
+    margin-top: 75px;
+
+}
+
+
+
+.menuLateral{
+    position: fixed;
+    width: 16%;
+    z-index: 1;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+
+}
+
+
+
+.row{
+    margin-left: 0;
+    margin-right: 0;
+}
+.bg-dark {
+    background-color: #565656!important;
+}
+
+
+
+@media (max-width: 767px) {
+    html, body{
+        height: 0%;
+    }
+    body{
+       margin-top: 80px;
+    }
+    .menuLateral{
+        left: -100%;
+    }
+
+    .navbar-expand-sm .navbar-nav .dropdown-menu {
+        position: relative;
+    }
+
+    .navbar-collapse  {
+        position: fixed;
+        top: 75px;
+        left: 0;
+        padding-left: 15px;
+        padding-right: 15px;
+        background-color: #565656!important;
+        z-index: 1;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        padding-bottom: 15px;
+        width: 70%;
+    }
+    .navbar-collapse.collapsing {
+        height: auto;
+        -webkit-transition: left 0.3s ease;
+        -o-transition: left 0.3s ease;
+        -moz-transition: left 0.3s ease;
+        transition: left 0.3s ease;
+        left: -100%;
+    }
+    .navbar-collapse.show {
+        left: 0;
+        -webkit-transition: left 0.3s ease-in;
+        -o-transition: left 0.3s ease-in;
+        -moz-transition: left 0.3s ease-in;
+        transition: left 0.3s ease-in;
+
+    }
+
+    /*altera a ordem do menu de navegação*/
+    .menu1 :nth-child(1) { order: 2; }
+    .menu1 :nth-child(2) { order: 3; }
+    .menu1 :nth-child(3) { order: 1; }
+
+
+
+}
+

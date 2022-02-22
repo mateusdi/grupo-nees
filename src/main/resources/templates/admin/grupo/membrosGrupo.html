@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-br" th:replace="~{fragmentos/fragmentosAdminV3 :: layout (~{:: main},~{:: title},~{:: script})}"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Editar Grupo | Participantes</title>
+</head>
+<body>
+<main>
+
+    <!--aqui receber um id do grupo em questão e listar todos os participantes daquele grupo, podendo adicionar ou remover-->
+    <!--primeiro vai listar os alunos presentes na disciplina e com um modal com um select vai adicionar novos-->
+    <div id="lista">
+
+        <table class="table table-bordered table-hover table-responsive">
+            <thead>
+
+            <th scope="col">Nome</th>
+            <th scope="col">Atribuição no Grupo</th>
+            <th scope="col">Ação</th>
+            </thead>
+
+            <tbody>
+            <tr scope="row" th:each="participante : ${membrosInscritos}">
+                <td th:text="${participante.membro.nome}"></td>
+                <td th:text="${participante.atribuicaoMembro.getAtribuicao} "></td>
+
+                <td>
+                    <a class="col-xs-6 m-1 btn btn-primary btn-sm "
+                       th:href="@{/membro/admin/grupo/membroGrupo/editar/{id}(id=${participante.id})}">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <a class="col-xs-6 m-1 btn btn-primary btn-sm"
+                       th:href="@{/membro/admin/grupo/membroGrupo/apagaMembroGrupo/{id}/grupo/{idGrupo}(id=${participante.id}, idGrupo = ${grupoId})}">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                </td>
+
+            </tr>
+            </tbody>
+
+        </table>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-xs-3 mr-1 mb-1">
+            <button class="btn btn-primary" data-target="#exampleModal" data-toggle="modal" type="button">
+                Adicionar Novo Participante
+            </button>
+        </div>
+        <div class="col-xs-3 mr-1 ">
+            <a class="btn btn-primary" th:href="@{/membro/admin/grupo/editarGrupo/{id}(id=${grupoId})}">
+                <i class="fas fa-edit"></i> Voltar
+            </a>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="exampleModal" role="dialog"
+         tabindex="-1">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Cadastro</h5>
+                    <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body" id="teste">
+
+                    <form id="meuform" method="post" th:action="@{/membro/admin/grupo/membrogrupo/salva} "
+                          th:object="${membroGrupo}">
+                        <div class="form-group">
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <label>Participantes:</label>
+                                    <div id="resultParticipantes"
+                                         th:include="fragmentos/fragmentoParticipantes :: participantes"></div>
+                                </div>
+                            </div>
+
+                            <div class="row mt-3">
+                                <div class="col-md-6 form-group  ">
+                                    <label>Atribuição no grupo:</label>
+                                    <select class="form-control form-control-sm" th:field="*{atribuicaoMembro}">
+                                        <option th:each="atribuicao: ${T(br.com.nees.enums.Atribuicao).values()}"
+                                                th:text="${atribuicao.getAtribuicao}"
+                                                th:value="${atribuicao}"></option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <input name="grupo.id" th:value="${grupoId}" type="hidden">
+
+                        </div>
+                        <div class="modal-footer mb-0 pb-0">
+                            <button class="btn btn-primary" type="submit">Adicionar</button>
+                            <button class="btn btn-secondary" data-dismiss="modal" type="button">Concluir</button>
+
+                        </div>
+                    </form>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+</main>
+
+<script>
+    $(document).ready(function () {
+        $("#meuform").submit(function (event) {
+            submitForm();
+            return false;
+        });
+    });
+
+
+    $('.js-example-basic-single').select2({
+        placeholder: 'Select an option',
+
+    });
+
+    function submitForm() {
+
+        $.ajax({
+            type: "POST",
+            url: "/membro/admin/grupo/membroGrupo/salva",
+            cache: false,
+            data: $('form#meuform').serialize(),
+            success: function (response) {
+                console.log("foi");
+                var url = window.location.pathname;
+                var id = url.substring(url.lastIndexOf('/') + 1);
+                $("#resultParticipantes").load("/membro/admin/grupo/membroGrupo/listaParticipantes/" + id);
+                //$("#teste").load('/grupo/listaParticipantes/17' + ' #teste');
+                $("#lista").load(window.location.href + ' #lista');
+                // $("#contact").html(response)
+                // $("#contact-modal").modal('hide');
+            },
+            error: function () {
+                console.log("error");
+            }
+        });
+    }
+</script>
+
+<script th:src="@{/js/cidades.js}"></script>
+<script th:src="@{/js/jquery.mask.min.js}"></script>
+<script th:src="@{/js/mascaras.js}"></script>
+
+
+</body>
+</html>

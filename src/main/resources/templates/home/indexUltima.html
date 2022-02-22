@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="pt-br">
+<head
+	th:replace="fragmentos/fragmentosV2 :: common_header(_,~{::link},_)">
+
+<!-- Bootstrap CSS -->
+<link th:href="@{/css/styleHome.css}" rel="stylesheet">
+
+<title>Hello, world!</title>
+</head>
+<body>
+
+	<div th:replace="fragmentos/fragmentosV2 :: header"></div>
+
+	<div class="container shadow p-3 mb-5 bg-body rounded mt-5 p-4 ">
+		<p>
+			AMOR... É um conceito divino, <br> É dimensão sem medida,<br>
+			É viagem sem destino,<br> É melodia da vida.<br> AMOR...<br>
+			É um caminho sem fim,<br> É não ter que perdoar,<br> É não
+			querer e dizer sim,<br> É dar tudo o que há para dar!<br>
+			AMOR...<br> É hoje aqui, feito poesia!
+		</p>
+	</div>
+
+	<div th:replace="fragmentos/fragmentosV2 :: footer"></div>
+
+	<div th:replace="fragmentos/fragmentosV2 :: scripts"></div>
+
+</body>
+</html>

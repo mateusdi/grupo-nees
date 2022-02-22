@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-br" th:replace="~{fragmentos/fragmentosAdminV3 :: layout (~{:: main},~{:: title},~{:: script})}"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Detalhes Membro</title>
+</head>
+<body>
+<main>
+
+    <form>
+    <fieldset disabled>
+        <div class="row">
+            <div class="col-md-6 form-group  ">
+                <label>Nome:</label>
+                <input class="form-control " placeholder="Ex: João"  th:value="${membroEditarDto.nome}" required>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 form-group  ">
+                <label>CPF:</label>
+                <input class="form-control"  th:value="${membroEditarDto.cpf}" type="tel" required>
+
+            </div>
+
+            <div class="col-md-4 form-group  ">
+                <label>RG:</label>
+                <input class="form-control"  th:value="${membroEditarDto.rg}" required>
+
+            </div>
+
+            <div class="col-md-4 form-group  ">
+                <label>Orgao Emissor:</label>
+                <select class="selectpicker form-control" data-live-search="true" data-size="5"
+                         th:value="${membroEditarDto.orgaoExpedidor}" title="Selecione uma opção" required>
+
+                    <option th:each="expedidor: ${expedidores}" th:selected=" ${membroEditarDto.orgaoExpedidor} != null ? ${expedidor.nome} == ${membroEditarDto.orgaoExpedidor.nome}" th:text="${expedidor.nome}"
+                            th:value="${expedidor.id}"></option>
+                </select>
+
+
+            </div>
+
+            <div class="col-md-4 form-group">
+                <label>Nascimento:</label>
+                <input class="form-control" th:attr="max=${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}"
+                       
+                       th:value="${membroEditarDto.nascimento}" type="date">
+
+            </div>
+
+            <div class="col-md-4 form-group  ">
+                <label>Sexo:</label>
+                <select class="selectpicker form-control" data-live-search="true" data-size="5"
+                        th:value="${membroEditarDto.sexo}" title="Selecione uma opção">
+
+                    <option th:each="sexo: ${sexos}" th:selected=" ${membroEditarDto.sexo} != null ? ${sexo.nome} == ${membroEditarDto.sexo.nome}" th:text="${sexo.nome}"
+                            th:value="${sexo.id}"></option>
+                </select>
+
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
+            <div class="col-md-6 form-group  ">
+                <label>Email:</label>
+                <input class="form-control" readonly placeholder="Ex: joao@gmail.com"  th:value="${membroEditarDto.email}" type="email">
+
+            </div>
+
+            <div class="col-md-6 form-group ">
+
+                <label>Celular:</label>
+                <input class="form-control" placeholder="(xx)x xxxx-xxxx" id="celular" th:value="${membroEditarDto.telefones[0].numero}" type="tel">
+
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
+
+            <div class="col-md-6 form-group  ">
+                <label>Endereço:</label>
+                <input class="form-control" th:value="${membroEditarDto.endereco.logradouro}">
+            </div>
+
+            <div class=" col-md-3 form-group  ">
+                <label>Número:</label>
+                <input class="form-control" th:value="${membroEditarDto.endereco.numero}" type="number">
+            </div>
+
+            <div class=" col-md-3 form-group   ">
+                <label>Complemento:</label>
+                <input class="form-control" th:value="${membroEditarDto.endereco.complemento}">
+            </div>
+
+            <div class="col-md-6 form-group  ">
+                <label>Bairro:</label>
+                <input class="form-control" th:value="${membroEditarDto.endereco.bairro}">
+            </div>
+
+            <div class="col-md-3 form-group ">
+                <label>Cidade:</label>
+                <select class="selectpicker form-control"
+                        data-live-search="true" data-none-selected-text="Selecione uma cidade" data-size="5"
+                        id="cidades" name="cidades"
+                        th:disabled="${membroEditarDto.endereco.cidade} != null ? ${membroEditarDto.endereco.cidade.id} == null "
+                        th:value="${membroEditarDto.endereco.cidade}">
+
+                    <option th:each="cidade: ${cidades}"
+                            th:selected="${membroEditarDto.endereco.cidade} != null ? ${cidade.id} == ${membroEditarDto.endereco.cidade.id}"
+                            th:text="${cidade.nome}" th:value="${cidade.id}"></option>
+                </select>
+            </div>
+
+            <div class="col-md-3 form-group  ">
+                <label>UF:</label>
+                <select class="selectpicker form-control" data-live-search="true" data-size="5"
+                        id="estados" name="estados" title="Selecione um Estado">
+
+                    <option th:each="estado: ${estados}"
+                            th:selected="${membroEditarDto.endereco.cidade} != null ? ${estado.id} == ${membroEditarDto.endereco.cidade.estado.id}"
+                            th:text="${estado}" th:value="${estado.id}"></option>
+                </select>
+            </div>
+        </div>
+
+        <hr>
+
+
+        <div class="row">
+            <div class="col-md-6 form-group ">
+                <label>Lattes:</label>
+                <input class="form-control" type="url"  placeholder="http://www.exemplo.com">
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
+            <div class="col-md-6 form-group  ">
+                <label>Status:</label>
+                <select class="form-control" th:value="${membroEditarDto.status}">
+                    <option th:each="status: ${T(br.com.nees.enums.Status).values()}" th:text="${status}"
+                            th:value="${status}"></option>
+                </select>
+            </div>
+
+            <div class="col-md-6 form-group  ">
+                <label>Atribuição:</label>
+                <input class="form-control" name="admin" th:value="${membroEditarDto.admin} == true ? 'Coordenador Geral' : 'Membro' " >
+
+            </div>
+        </div>
+
+</fieldset>
+    </form>
+    <div class="row text-center">
+        <div class=" col">
+            <a class="btn btn-primary" th:href="@{/membro/admin/editarMembro/{id}(id = ${membroEditarDto.id})}" >Editar</a>
+        </div>
+    </div>
+
+</main>
+
+<script th:src="@{/js/cidades.js}"></script>
+<script th:src="@{/js/jquery.mask.min.js}"></script>
+<script th:src="@{/js/mascaras.js}"></script>
+
+
+</body>
+</html>

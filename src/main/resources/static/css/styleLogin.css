@@ -1,0 +1,30 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    margin-top: 75px;
+
+    font-family: "Arial";
+}
+
+.row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.caixa{
+    margin-left: 30%;
+    margin-right: 30%;
+}
+
+@media (max-width: 767px) {
+    html, body {
+        margin-top: 0px;
+        height: 0%;
+    }
+    .caixa{
+        margin: 0;
+    }
+}
+
