@@ -12,7 +12,7 @@ public class HomeController {
 	@GetMapping(value = { "", "index" })
 	public ModelAndView index() {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/home/index");
+		mv.setViewName("index");
 
 		return mv;
 	}
