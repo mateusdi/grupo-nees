@@ -138,25 +138,9 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
-				<version>3.2.0</version>
+				<version>3.1.0</version>
 				<!-- Add the following exclusions here. -->
-				<configuration>
-					<nonFilteredFileExtensions>
-						<nonFilteredFileExtension>properties</nonFilteredFileExtension>
-					</nonFilteredFileExtensions>
-					
-					 <source>1.8</source>
-          			<target>1.8</target>
-					
-					<configuration>
-					<excludes>
-						<exclude>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-						</exclude>
-					</excludes>
-				</configuration>
-				</configuration>
+		
 
 			</plugin>
 
