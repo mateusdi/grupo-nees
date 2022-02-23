@@ -11,10 +11,11 @@
             <table class="table table-hover table-responsive">
                 <thead class="thead-dark">
                 <tr>
-                    <th >Nome</th>
+                    <th>#</th>
+                    <th>Nome</th>
 
-                    <th >Status</th>
-                    <th ></th>
+                    <th>Status</th>
+                    <th></th>
 
                 </tr>
                 </thead>
@@ -22,22 +23,24 @@
                 <tbody>
                 <tr class="table-row" scope="row" th:data-href="@{/membro/grupo/{id}(id=${grupo.id})}"
                     th:each="grupo : ${grupos}">
-                    <td class="col-4" th:text="${grupo.nome}"></td>
+                    <td class="col-1" th:text="${grupo.id}"></td>
+                    <td class="col-3" th:text="${grupo.nome}"></td>
 
                     <td class="col-1" th:text="${grupo.status} "></td>
 
                     <td class="col-1 ">
                         <div class="row ">
 
-                                <a class="col-xs-6 m-1  btn btn-primary btn-sm  "
-                                   th:href="@{/membro/admin/grupo/editarGrupo/{id}(id=${grupo.id})}">
-                                    <i class="fas fa-edit"></i>
-                                </a>
+                            <a class="col-xs-6 m-1  btn btn-primary btn-sm  "
+                               th:href="@{/membro/admin/grupo/editarGrupo/{id}(id=${grupo.id})}">
+                                <i class="fas fa-edit"></i>
+                            </a>
 
 
-                                <a class="col-xs-6 m-1 btn btn-primary btn-sm" th:href="@{/membro/grupo/{id}(id=${grupo.id})}">
-                                    <i class="fas fa-eye"></i>
-                                </a>
+                            <a class="col-xs-6 m-1 btn btn-primary btn-sm"
+                               th:href="@{/membro/grupo/{id}(id=${grupo.id})}">
+                                <i class="fas fa-eye"></i>
+                            </a>
 
                         </div>
                     </td>

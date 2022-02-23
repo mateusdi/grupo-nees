@@ -23,6 +23,9 @@ public interface MembroDao extends JpaRepository<Membro, Integer> {
 	
 	@Query(value = "SELECT * FROM  membro as m WHERE m.id != 1 " , nativeQuery = true)
 	List<Membro> BuscaMembrosSemOAdmin();
+	
+	@Query(value = "SELECT * FROM  membro as m WHERE m.nome LIKE CONCAT('%',?1,'%') OR m.cpf = CONCAT('%',?1,'%') OR m.email LIKE CONCAT('%',?1,'%') OR m.nascimento = ?1 OR m.rg = CONCAT('%',?1,'%')  " , nativeQuery = true)
+	List<Membro> buscaMembros(String valor);
 
 
 }

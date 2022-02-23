@@ -1,6 +1,9 @@
 package br.com.nees.controllers;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
@@ -23,7 +26,9 @@ import br.com.nees.dao.SexoDao;
 import br.com.nees.dto.MembroEditarDto;
 import br.com.nees.dto.MembroNovoDto;
 import br.com.nees.enums.Status;
+import br.com.nees.model.Grupo;
 import br.com.nees.model.Membro;
+import br.com.nees.model.MembroGrupo;
 import br.com.nees.model.Telefone;
 import br.com.nees.utils.SenhaPadrao;
 
@@ -195,6 +200,20 @@ public class MembroController {
 			return new ModelAndView("redirect:/membro/admin/editarMembro/" + membro.getId() + "?sucess");
 
 		}
+	}
+	
+	
+	@GetMapping(value = "/listaMembrosTabela/{valor}")
+	public ModelAndView pegaFragmento(@PathVariable("valor") String valor) {
+		ModelAndView mv = new ModelAndView();
+		
+		mv.setViewName("fragmentos/fragmentoMembros :: membros");
+
+		List<Membro> membros = membroRepositorio.buscaMembros(valor);
+		System.out.println(membros.size());
+		mv.addObject("membros", membros);
+
+		return mv;
 	}
 
 }

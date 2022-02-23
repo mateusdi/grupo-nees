@@ -1,0 +1,56 @@
+
+
+<div th:fragment="membros"  >
+
+    <div class="row">
+        <div class="col">
+            <table class="table table-hover table-responsive">
+                <thead class="thead-dark">
+                <tr>
+                    <th>#</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">CPF</th>
+                    <th scope="col">Status</th>
+                    <th scope="col"></th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="table-row" scope="row" th:data-href="@{/membro/admin/detalhesMembro/{id}(id=${membro.id})}"
+                    th:each="membro : ${membros}">
+                    <td class="col-1" th:text="${membro.id}"></td>
+                    <td class="col-2" th:text="${membro.nome}"></td>
+                    <td class="col-1" th:text="${membro.email}"></td>
+                    <td class="col-1" th:text="${membro.cpf}"></td>
+                    <td class="col-1" th:text="${membro.status} "></td>
+
+                    <td class="col-1 ">
+                        <div class="row ">
+
+                            <a class="col-xs-6 m-1  btn btn-primary btn-sm "
+                               th:href="@{/membro/admin/editarMembro/{id}(id=${membro.id})}">
+                                <i class="fas fa-edit"></i>
+                            </a>
+
+
+                            <a class="col-xs-6 m-1 btn btn-primary btn-sm"
+                               th:href="@{/membro/admin/detalhesMembro/{id}(id=${membro.id})}">
+                                <i class="fas fa-eye"></i>
+                            </a>
+
+                        </div>
+                    </td>
+
+
+                </tr>
+
+                </tbody>
+            </table>
+
+            <a class="btn btn-primary" th:href="@{/membro/admin/novoMembro}">
+                <i class="fa fa-plus-circle"></i> Novo Membro
+            </a>
+        </div>
+    </div>
+</div>

@@ -3,7 +3,7 @@ package br.com.nees.enums;
 public enum Atribuicao {
 	
 	MEMBRO("Membro"),
-	COORDENADOR("Coordenador");
+	COORDENADOR("Membro Editor");
 	
 	private String atribuicao;
 	

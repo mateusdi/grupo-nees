@@ -24,6 +24,7 @@ import br.com.nees.enums.Status;
 import br.com.nees.model.Grupo;
 import br.com.nees.model.MembroGrupo;
 import br.com.nees.model.Usuario;
+import br.com.nees.services.GrupoService;
 
 @Controller
 //@RestController
@@ -32,6 +33,9 @@ public class GrupoController {
 
 	@Autowired
 	private GrupoDao grupoRepositorio;
+
+	@Autowired
+	GrupoService grupoService;
 
 	@Autowired
 	private GrupoMembroDao grupoMembroRepositorio;
@@ -106,12 +110,19 @@ public class GrupoController {
 
 	@GetMapping("/membro/grupo/{id}") // recebo o id do grupo e listo as atividades daquele grupo
 	public ModelAndView listarGrupos(@PathVariable Integer id, @AuthenticationPrincipal Usuario userDetails) {
+
+
+		if (!grupoService.MembroDoGrupo(userDetails.getIdMembro(), id,userDetails)) {// verifica se o membro pertence ao grupo
+			return new ModelAndView("redirect:/membro/grupos/");
+		}
+		
+
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("admin/grupo/grupoAtividades");
 
 		Optional<Grupo> optional = grupoRepositorio.findById(id);
 		if (!optional.isEmpty()) {
-			mv.addObject("isCoordenador", isCoordenador(userDetails, optional.get()));
+			mv.addObject("isCoordenador", grupoService.isCoordenador(userDetails, optional.get().getId()));
 			mv.addObject("grupo", optional.get());
 			mv.addObject("grupoId", optional.get().getId());
 			mv.addObject("atividades", atividadeRepositorio.findAllByIdGrupo(id));
@@ -123,21 +134,7 @@ public class GrupoController {
 		}
 	}
 
-	public boolean isCoordenador(@AuthenticationPrincipal Usuario userDetails, Grupo grupo) {// colocar no service
-		// verifico no grupo membro se aquele membro é admin
-		Optional<MembroGrupo> optional = grupoMembroRepositorio.verificaSeExiste(userDetails.getIdMembro(),
-				grupo.getId());
-		if (!optional.isEmpty()) {
-			if (optional.get().getAtribuicaoMembro() == Atribuicao.COORDENADOR) {
-				return true;
-			} else {
-				return false;
-			}
-		} else {
-			return false;
-		}
 
-	}
 
 	@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("/membro/admin/grupo/")
@@ -149,24 +146,25 @@ public class GrupoController {
 		return mv;
 	}
 
-	@GetMapping("/membro/grupo/frequencia/{id}")
-	public ModelAndView frequenciaGrupo(@PathVariable Integer id, @AuthenticationPrincipal Usuario userDetails) {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("admin/grupo/atividade/frequencia");
-
-		Optional<Grupo> optional = grupoRepositorio.findById(id);
-		if (!optional.isEmpty()) {
-			mv.addObject("isCoordenador", isCoordenador(userDetails, optional.get()));
-			mv.addObject("grupo", optional.get());
-			mv.addObject("grupoId", optional.get().getId());
-			mv.addObject("atividades", atividadeRepositorio.findAllByIdGrupo(id));
-
-			return mv;
-
-		} else {// error
-			return new ModelAndView("redirect:/");
-		}
-
-	}
+	
+//	@GetMapping("/membro/grupo/frequencia/{id}")
+//	public ModelAndView frequenciaGrupo(@PathVariable Integer id, @AuthenticationPrincipal Usuario userDetails) {
+//		ModelAndView mv = new ModelAndView();
+//		mv.setViewName("admin/grupo/atividade/frequencia");
+//
+//		Optional<Grupo> optional = grupoRepositorio.findById(id);
+//		if (!optional.isEmpty()) {
+//			mv.addObject("isCoordenador", isCoordenador(userDetails, optional.get()));
+//			mv.addObject("grupo", optional.get());
+//			mv.addObject("grupoId", optional.get().getId());
+//			mv.addObject("atividades", atividadeRepositorio.findAllByIdGrupo(id));
+//
+//			return mv;
+//
+//		} else {// error
+//			return new ModelAndView("redirect:/");
+//		}
+//
+//	}
 
 }
