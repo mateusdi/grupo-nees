@@ -71,7 +71,7 @@ public class AtividadeService {
 					.setSubject(String.format(template.get(0), atividade.getGrupo().getNome(), atividade.getTitulo()));// 3
 			// parametros
 			emailModel.setText(String.format(template.get(1), membro.getNome(), atividade.getGrupo().getNome(),
-					new SimpleDateFormat("yyyy-MM-dd HH:mm").format(atividade.getPrazoEntrega()))); // 2 parametros
+					new SimpleDateFormat("yyyy-MM-dd HH:mm").format(atividade.getPrazoEntrega()), atividade.getGrupo().getId())); // 2 parametros
 
 			emailModel.setMembroId(membro.getId());
 

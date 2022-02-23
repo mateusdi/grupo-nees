@@ -5,14 +5,14 @@ import java.util.List;
 
 public class Templates {
 
-	private final String urlAtividades = "https://grupo-nees.herokuapp.com/membro/atividade";
+	private String urlAtividades = "https://grupo-nees.herokuapp.com/membro/grupo/";
 
 	/** ------------------------------------------ template para novas atividades ---------------------------------------**/
 	
 	private String novaAtividadeTexto() {
 
 		return "<p>Olá, <b></b>%s!</p><p>Você tem uma nova atividade do grupo <b>%s</b> para <b>%s.</b></p><p>para mais detalhes, basta acessar o link:<b>&nbsp;<a href='"
-				+ urlAtividades + "'>" + "Minhas Atividades" + "</a></b></p><p><br></p>";
+				+ urlAtividades + "%s'>" + "Minhas Atividades" + "</a></b></p><p><br></p>";
 	}// 2 parametros
 
 	private String novaAtividadeAssunto() {
@@ -31,7 +31,7 @@ public class Templates {
 	private String alteradaDataAtividadeTexto() {
 
 		return "<p>Olá, <b></b>%s!</p><p>A atividade do grupo <b>%s </b>foi alterada para a data: <b>%s.</b></p><p>para mais detalhes, basta acessar o link:<b>&nbsp;<a href='"
-				+ urlAtividades + "'>" + "Minhas Atividades" + "</a></b></p><p><br></p>";
+				+ urlAtividades +  "%s'>" + "Minhas Atividades" + "</a></b></p><p><br></p>";
 	}// 2 parametros
 
 	private String alteradaDataAtividadeAssunto() {
@@ -52,7 +52,7 @@ public class Templates {
 	private String atividadeHojeAtividadeTexto() {
 
 		return "<p>Olá, <b></b>%s!</p><p>Fique atento, você tem uma atividade do grupo <b>%s </b>para hoje <b>%s.</b></p><p>para mais detalhes, basta acessar o link:<b>&nbsp;<a href='"
-				+ urlAtividades + "'>" + "Minhas Atividades" + "</a></b></p><p><br></p>";
+				+ urlAtividades +  "%s'>" + "Minhas Atividades" + "</a></b></p><p><br></p>";
 	}// 2 parametros
 
 	private String atividadeHojeAtividadeAssunto() {
@@ -71,7 +71,7 @@ public class Templates {
 	private String alteradaAtividadeTexto() {
 
 		return "<p>Olá, <b></b>%s!</p><p>A atividade do grupo <b>%s </b>foi alterada, a data para entrega da atividade é: <b>%s.</b></p><p>para mais detalhes, basta acessar o link:<b>&nbsp;<a href='"
-				+ urlAtividades + "'>" + "Minhas Atividades" + "</a></b></p><p><br></p>";
+				+ urlAtividades +  "%s'>" + "Minhas Atividades" + "</a></b></p><p><br></p>";
 	}// 2 parametros
 
 	private String alteradaAtividadeAssunto() {

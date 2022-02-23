@@ -49,7 +49,7 @@ public class HomeController {
 	@GetMapping("/login")
 	public ModelAndView telaLogin() {
 		ModelAndView mv = new ModelAndView();
-		System.out.println("aq" + new BCryptPasswordEncoder().encode("123"));
+		System.out.println("aq" + new BCryptPasswordEncoder().encode("aluno@NEES"));
 		mv.setViewName("home/login");
 		return mv;
 	}
