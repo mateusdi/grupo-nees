@@ -10,32 +10,51 @@
 
     <div class="row">
         <div class="col-6 form-group  ">
-            <h6 >Título: <b><div th:text="${atividade.titulo}"  th:remove="tag"></div></b></h6>
+            <h6>Título: <b>
+                <div th:remove="tag" th:text="${atividade.titulo}"></div>
+            </b></h6>
         </div>
     </div>
 
 
     <div class="row">
         <div class="col-6 form-group  ">
-            <h6 >Postada em: <b><div th:text="${#dates.format(atividade.dataCriacao, 'dd/MM/yyyy HH:mm')}"  th:remove="tag"></div></b></h6>
+            <h6>Postada em: <b>
+                <div th:remove="tag" th:text="${#dates.format(atividade.dataCriacao, 'dd/MM/yyyy HH:mm')}"></div>
+            </b></h6>
         </div>
     </div>
 
     <div class="row">
         <div class="col-6 form-group  ">
-            <h6 ><b><div th:text="${atividade.tipo.nome}"  th:remove="tag"></div></b> para o dia: <b><div th:text="${#dates.format(atividade.prazoEntrega, 'dd/MM/yyyy HH:mm')}"  th:remove="tag"></div></b></h6>
+            <h6><b>
+                <div th:remove="tag" th:text="${atividade.tipo.nome}"></div>
+            </b> para o dia: <b>
+                <div th:remove="tag" th:text="${#dates.format(atividade.prazoEntrega, 'dd/MM/yyyy HH:mm')}"></div>
+            </b></h6>
         </div>
     </div>
 
     <div class="row">
         <div class="col form-group  ">
-            <h6 >Descrição: <textarea id="content"  th:text="${atividade.descricao}"  ></textarea></h6>
+            <h6>Descrição: <textarea id="content" th:text="${atividade.descricao}"></textarea></h6>
         </div>
     </div>
 
-    <div class="row text-center">
+
+
+    <div class="row text-center mb-2">
         <div class="col">
-            <a class="btn btn-primary" th:href="@{/membro/grupo/{id}(id=${atividade.grupo.id})}" >Voltar</a>
+            <a class="btn btn-primary" th:href="@{/membro/grupo/editaAtividade/{id}(id=${atividade.id})}">Editar</a>
+        </div>
+
+    </div>
+
+    <div class="row text-center ">
+        <div th:if="${isCoordenador}" th:remove="tag">
+            <div class="col">
+                <a class="btn btn-primary" th:href="@{/membro/grupo/{id}(id=${atividade.grupo.id})}">Voltar</a>
+            </div>
         </div>
     </div>
 
@@ -55,12 +74,11 @@
 <script>
 
 
-
     $('#content').summernote({
         tabsize: 2,
         toolbar: [
             ['view', ['fullscreen', 'codeview', 'help']]
-            ],
+        ],
         disableDragAndDrop: true,
         height: 200,
 

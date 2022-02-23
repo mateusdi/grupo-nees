@@ -7,7 +7,8 @@
 </head>
 <body>
 <main>
-    <form th:action="@{/membro/grupo/{id}/novaAtividade(id=${id})} " autocomplete="off" id="formulario" method="post" th:object="${atividadeNovoDto}">
+
+    <form th:action="@{/membro/grupo/{idGrupo}/novaAtividade(idGrupo=${idGrupo})} " autocomplete="off" id="formulario" method="post" th:object="${atividadeNovoDto}">
 
         <div class="row">
             <div class="col-3 form-group  ">
@@ -53,7 +54,7 @@
 
         <div class="row text-center">
             <div class=" col ">
-                <button class="btn btn-success" type="submit">Salvar</button>
+                <button class="btn btn-primary" type="submit">Salvar</button>
             </div>
         </div>
 

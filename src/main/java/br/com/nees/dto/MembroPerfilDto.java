@@ -32,16 +32,16 @@ public class MembroPerfilDto {
 	@Past
 	private Date nascimento;
 	
-	@NotEmpty
-	@NotNull
+	//@NotEmpty
+	//@NotNull
 	private String cpf;
 	
-	@NotEmpty
-	@NotNull
+	//@NotEmpty
+	//@NotNull
 	private String rg;
 	
 	
-	@NotNull
+	//@NotNull
 	private OrgaoExpedidor orgaoExpedidor;
 	
 	//private String senha;

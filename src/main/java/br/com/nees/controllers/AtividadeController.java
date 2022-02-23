@@ -46,15 +46,17 @@ public class AtividadeController {
 
 	@Autowired
 	private TipoAtividadeDao tipoAtividadeRepositorio;
-
-	@GetMapping("/membro/grupo/{id}/novaAtividade") // recebe o id do grupo que vai ser essa nova atividade
-	public ModelAndView novaAtividade(@PathVariable("id") Integer id, AtividadeNovoDto atividadeNovoDto,@AuthenticationPrincipal Usuario userDetails) {
+	
+	//tá atribuindo o id do gurpo ao id da atividade
+	
+	@GetMapping("/membro/grupo/{idGrupo}/novaAtividade") // recebe o id do grupo que vai ser essa nova atividade
+	public ModelAndView novaAtividade(@PathVariable("idGrupo") Integer idGrupo, AtividadeNovoDto atividadeNovoDto,@AuthenticationPrincipal Usuario userDetails) {
 		
-		if (!grupoService.MembroDoGrupo(userDetails.getIdMembro(), id,userDetails)) {// verifica se o membro pertence ao grupo
+		if (!grupoService.MembroDoGrupo(userDetails.getIdMembro(), idGrupo,userDetails)) {// verifica se o membro pertence ao grupo
 			return new ModelAndView("redirect:/membro/grupos/");
 		}
 		
-		if(!atividadeService.isCoordenador(userDetails, id)) {
+		if(!atividadeService.isCoordenador(userDetails, idGrupo)) {
 			return new ModelAndView("redirect:/membro/grupos/");
 		}
 		
@@ -71,28 +73,29 @@ public class AtividadeController {
 		return mv;
 	}
 
-	@PostMapping("/membro/grupo/{id}/novaAtividade")
-	public ModelAndView salvaAtividade(@PathVariable("id") Integer id, @Valid AtividadeNovoDto atividadeNovoDto,
+	
+	@PostMapping("/membro/grupo/{idGrupo}/novaAtividade")
+	public ModelAndView salvaAtividade(@PathVariable("idGrupo") Integer idGrupo, @Valid AtividadeNovoDto atividadeNovoDto,
 			@AuthenticationPrincipal Usuario userDetails, BindingResult bindingResult) {
 		
-		if (!grupoService.MembroDoGrupo(userDetails.getIdMembro(), id,userDetails)) {// verifica se o membro pertence ao grupo
+		if (!grupoService.MembroDoGrupo(userDetails.getIdMembro(), idGrupo,userDetails)) {// verifica se o membro pertence ao grupo
 			return new ModelAndView("redirect:/membro/grupos/");
 		}
 		
-		if(!atividadeService.isCoordenador(userDetails, id)) {
+		if(!atividadeService.isCoordenador(userDetails, idGrupo)) {
 			return new ModelAndView("redirect:/membro/grupos/");
 		}
 
 		if (bindingResult.hasErrors()) {
 			System.out.println(bindingResult.getFieldErrors());
-			return novaAtividade(id, atividadeNovoDto,userDetails);
+			return novaAtividade(idGrupo, atividadeNovoDto,userDetails);
 
 		} else {
 			Atividade atividade = atividadeNovoDto.toAtividade();
 			Calendar cal = Calendar.getInstance();
 			atividade.setDataCriacao(new Timestamp(cal.getTimeInMillis()));
 
-			atividade.setGrupo(grupoRepositorio.findById(id).get());// gambiarra temporaria
+			atividade.setGrupo(grupoRepositorio.findById(idGrupo).get());// gambiarra temporaria
 
 			try {
 				atividadeRepositorio.save(atividade);
@@ -102,7 +105,7 @@ public class AtividadeController {
 				System.out.println(e);
 			}
 
-			return new ModelAndView("redirect:/membro/grupo/" + id);
+			return new ModelAndView("redirect:/membro/grupo/" + idGrupo);
 		}
 	}
 
@@ -110,13 +113,7 @@ public class AtividadeController {
 	public ModelAndView alteraAtividade(@PathVariable("id") Integer id, @Valid AtividadeNovoDto atividadeNovoDto,@AuthenticationPrincipal Usuario userDetails,
 			BindingResult bindingResult) {
 		
-		if (!grupoService.MembroDoGrupo(userDetails.getIdMembro(), id,userDetails)) {// verifica se o membro pertence ao grupo
-			return new ModelAndView("redirect:/membro/grupos/");
-		}
-		
-		if(!atividadeService.isCoordenador(userDetails, id)) {
-			return new ModelAndView("redirect:/membro/grupos/");
-		}
+	
 
 		if (bindingResult.hasErrors()) {
 			System.out.println(bindingResult.getFieldErrors());
@@ -127,10 +124,19 @@ public class AtividadeController {
 			Optional<Atividade> optional = atividadeRepositorio.findById(id);
 
 			if (!optional.isEmpty()) {
+				
+				if (!grupoService.MembroDoGrupo(userDetails.getIdMembro(), optional.get().getGrupo().getId(),userDetails )) {// verifica se o membro pertence ao grupo
+					return new ModelAndView("redirect:/membro/grupos/");
+				}
+				
+				if(!atividadeService.isCoordenador(userDetails, optional.get().getGrupo().getId())) {
+					return new ModelAndView("redirect:/membro/grupos/");
+				}
+				
 				atividadeNovoDto.setGrupo(optional.get().getGrupo());
 				atividadeNovoDto.setId(optional.get().getId());
 
-			}
+			
 
 			Atividade atividade = atividadeNovoDto.toAtividade(optional.get());
 			// atividade.setGrupo(optional.get().getGrupo());
@@ -143,20 +149,17 @@ public class AtividadeController {
 				System.out.println(e.getMessage());
 			}
 
-			return new ModelAndView("redirect:/membro/grupo/editaAtividade/70");
+			return new ModelAndView("redirect:/membro/grupo/atividades/" + atividade.getId());
+			}else {
+				return new ModelAndView("redirect:/membro/grupos");
+			}
 		}
 	}
 
 	@GetMapping("/membro/grupo/editaAtividade/{id}")
 	public ModelAndView editaAtividade(@PathVariable("id") Integer id, AtividadeNovoDto atividadeNovoDto, @AuthenticationPrincipal Usuario userDetails) {
 		
-		if (!grupoService.MembroDoGrupo(userDetails.getIdMembro(), id,userDetails )) {// verifica se o membro pertence ao grupo
-			return new ModelAndView("redirect:/membro/grupos/");
-		}
-		
-		if(!atividadeService.isCoordenador(userDetails, id)) {
-			return new ModelAndView("redirect:/membro/grupos/");
-		}
+	
 
 		ModelAndView mv = new ModelAndView();
 
@@ -165,7 +168,10 @@ public class AtividadeController {
 		Optional<Atividade> optional = atividadeRepositorio.findById(id);
 
 		if (!optional.isEmpty()) {
-
+			
+			
+			
+			
 			atividadeNovoDto.fromAtividade(optional.get());
 			mv.addObject("tipos", tipoAtividadeRepositorio.findAll());
 
@@ -182,31 +188,40 @@ public class AtividadeController {
 			return mv;
 		} else {
 			// lança excessao
-			return mv;
+			return new ModelAndView("redirect:/membro/grupos");
 		}
 	}// criar um atribuito auxiliar na classe que recebe a data passada e no post
 		// comparar se mudou a data. Se mudou entao mando email
 
 	@GetMapping("/membro/grupo/atividades/{id}") // recebe o id do grupo que ele pertence
 	public ModelAndView atividadeDetalhes(@PathVariable("id") Integer id,@AuthenticationPrincipal Usuario userDetails) { 
-		
-		if (!grupoService.MembroDoGrupo(userDetails.getIdMembro(), id,userDetails)) {// verifica se o membro pertence ao grupo
-			return new ModelAndView("redirect:/membro/grupos/");
-		}
-		
-		
+
 		ModelAndView mv = new ModelAndView();
 
 		mv.setViewName("admin/atividade/verAtividade");
 
 		Optional<Atividade> optional = atividadeRepositorio.findById(id);
+		
+		
+		
+		
+		
 
 		if (!optional.isEmpty()) {
 			mv.addObject("atividade", optional.get());
-
+			
+			if (!grupoService.MembroDoGrupo(userDetails.getIdMembro(),optional.get().getGrupo().getId() ,userDetails)) {// verifica se o membro pertence ao grupo
+				return new ModelAndView("redirect:/membro/grupos/");
+			}
+			
+			mv.addObject("isCoordenador",  atividadeService.isCoordenador(userDetails,optional.get().getGrupo().getId()));
+			
+			return mv;
+		}else {
+			return new ModelAndView("redirect:/membro/grupos");
 		}
 
-		return mv;
+		
 	}
 
 }
