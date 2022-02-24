@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 
 import br.com.nees.enums.Status;
@@ -29,6 +30,7 @@ public class Grupo {
 	private int id;
 	
 	@NotEmpty
+	@NotBlank
 	@Column(name = "nome")
 	private String nome;
 	

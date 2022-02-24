@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Past;
 
@@ -27,6 +28,7 @@ public class MembroNovoDto {
 	private int id;
 
 	@NotEmpty
+	@NotBlank
 	private String nome;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -43,6 +45,7 @@ public class MembroNovoDto {
 
 	@NotEmpty
 	@Email
+	@NotBlank
 	private String email;
 
 	private Sexo sexo;

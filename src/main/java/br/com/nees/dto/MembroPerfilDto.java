@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
@@ -25,6 +26,7 @@ public class MembroPerfilDto {
 	
 	@NotEmpty
 	@NotNull
+	@NotBlank
 	private String nome;
 	
 	@NotNull
@@ -49,6 +51,7 @@ public class MembroPerfilDto {
 	@NotEmpty
 	@NotNull
 	@Email
+	@NotBlank
 	private String email;
 	
 	private Sexo sexo;
