@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.nees.dao.MembroDao;
+import br.com.nees.utils.SenhaPadrao;
 
 @Controller
 public class HomeController {
@@ -49,7 +50,7 @@ public class HomeController {
 	@GetMapping("/login")
 	public ModelAndView telaLogin() {
 		ModelAndView mv = new ModelAndView();
-		System.out.println("aq" + new BCryptPasswordEncoder().encode("aluno@NEES"));
+		System.out.println("aq" + new BCryptPasswordEncoder().encode(SenhaPadrao.senhaPadrao));
 		mv.setViewName("home/login");
 		return mv;
 	}
