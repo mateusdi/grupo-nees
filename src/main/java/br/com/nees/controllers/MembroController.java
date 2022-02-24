@@ -25,11 +25,13 @@ import br.com.nees.dao.OrgaoExpedidorDao;
 import br.com.nees.dao.SexoDao;
 import br.com.nees.dto.MembroEditarDto;
 import br.com.nees.dto.MembroNovoDto;
+import br.com.nees.email.TemplateMembro;
 import br.com.nees.enums.Status;
 import br.com.nees.model.Grupo;
 import br.com.nees.model.Membro;
 import br.com.nees.model.MembroGrupo;
 import br.com.nees.model.Telefone;
+import br.com.nees.services.MembroService;
 import br.com.nees.utils.SenhaPadrao;
 
 @Controller
@@ -39,6 +41,9 @@ public class MembroController {
 
 	@Autowired
 	private MembroDao membroRepositorio;
+	
+	@Autowired
+	private MembroService membroService;
 
 	@Autowired
 	private CidadeDao cidadeRepositorio;
@@ -88,7 +93,12 @@ public class MembroController {
 
 			Optional<Membro> optional = membroRepositorio.verificaSeMembroExiste(membro.getEmail());
 			if (optional.isEmpty()) {// verifica se o membro já existe
+				try {
 				membroRepositorio.save(membro);
+				membroService.enviaEmailTemplate(membro, new TemplateMembro().bemVindo());
+				}catch (Exception e) {
+					// TODO: handle exception
+				}
 				return new ModelAndView("redirect:/membro/admin/listarMembros");
 			} else {
 				System.out.println(optional.get());

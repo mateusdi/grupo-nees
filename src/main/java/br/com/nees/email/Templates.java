@@ -3,9 +3,12 @@ package br.com.nees.email;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.nees.utils.SenhaPadrao;
+
 public class Templates {
 
 	private String urlAtividades = "https://grupo-nees.herokuapp.com/membro/grupo/";
+
 
 	/** ------------------------------------------ template para novas atividades ---------------------------------------**/
 	
@@ -84,6 +87,8 @@ public class Templates {
 		template.add(alteradaAtividadeTexto());
 		return template;
 	}
+	
+	
 	
 	
 //	public EmailLog novaAtividade(Atividade atividade) {

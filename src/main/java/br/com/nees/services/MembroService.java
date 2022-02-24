@@ -1,33 +1,45 @@
 package br.com.nees.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
-import br.com.nees.dao.CidadeDao;
-import br.com.nees.dao.EstadoDao;
-import br.com.nees.dao.MembroDao;
-import br.com.nees.dao.OrgaoExpedidorDao;
-import br.com.nees.dao.SexoDao;
+import br.com.nees.model.EmailLog;
+import br.com.nees.model.Membro;
 
 @Service
 public class MembroService {
 	
-	@Autowired
-	private MembroDao membroRepositorio;
+
 
 	@Autowired
-	private CidadeDao cidadeRepositorio;
+	EmailService emailService;
+	
 
-	@Autowired
-	private EstadoDao estadoRepositorio;
 
-	@Autowired
-	private SexoDao sexoRepositorio;
+	@Async
+	public void enviaEmailTemplate(Membro membro, List<String> template) {
 
-	@Autowired
-	private OrgaoExpedidorDao orgaoExpedidorRepositorio;
 
 	
+
+			EmailLog emailModel = new EmailLog();
+
+			emailModel.setEmailTo(membro.getEmail());
+			// atividade.getGrupo().getNome()
+			emailModel
+					.setSubject(template.get(0));// 3
+			// parametros
+			emailModel.setText(String.format(template.get(1), membro.getNome())); 
+
+			emailModel.setMembroId(membro.getId());
+
+			emailService.enviaEmail(emailModel);
+		
+
+	}
 	
 
 }
