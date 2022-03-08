@@ -141,13 +141,11 @@
 
         <hr>
 
+
         <div class="row">
             <div class="col-md-6 form-group  ">
                 <label>Status:</label>
-                <select class="form-control" th:value="${membroEditarDto.status}">
-                    <option th:each="status: ${T(br.com.nees.enums.Status).values()}" th:text="${status}"
-                            th:value="${status}"></option>
-                </select>
+            <input class="form-control" th:value="${membroEditarDto.status}"> 
             </div>
 
             <div class="col-md-6 form-group  ">

@@ -2,7 +2,7 @@
 <html lang="pt-br" th:replace="~{fragmentos/fragmentosAdminV3 :: layout (~{:: main},~{:: title},~{:: script})}"
       xmlns:th="https://www.thymeleaf.org">
 <head>
-    <title>Detalhes Membro</title>
+    <title>Meu Perfil</title>
 </head>
 <body>
 <main>
@@ -12,7 +12,7 @@
             <div class="row">
                 <div class="col-md-6 form-group  ">
                     <label>Nome:</label>
-                    <input class="form-control " placeholder="Ex: João"  th:value="${membroPerfilDto.nome}" required>
+                    <input class="form-control " placeholder="Ex: João da Silva"  th:value="${membroPerfilDto.nome}" required>
 
                 </div>
             </div>

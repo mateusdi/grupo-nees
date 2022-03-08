@@ -3,8 +3,6 @@ package br.com.nees.email;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.nees.utils.SenhaPadrao;
-
 public class Templates {
 
 	private String urlAtividades = "https://grupo-nees.herokuapp.com/membro/grupo/";

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="https://www.thymeleaf.org" th:replace="~{fragmentos/fragmentosAdminV3 :: layout (~{:: main},~{:: title},~{:: script})}">
+<head >
+    <title>Novo Grupo</title>
+</head>
+<body>
+<main>
+    <form id="formulario" method="post"  th:object="${grupo}" autocomplete="off">
+
+
+        <div class="row">
+            <div class="col-md-6 form-group  ">
+                <label>Nome:</label>
+                <input class="form-control" th:errorclass="is-invalid" th:field="*{nome}">
+                <div class="invalid-feedback" th:errors="*{nome}"></div>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 form-group  ">
+                <label>Descricao:</label>
+               <textarea class="form-control" th:field="*{descricao}"> </textarea>
+            </div>
+
+        </div>
+
+<!--        <label class="checkbox-inline" th:each="m : ${allMembros}" >-->
+<!--                <input type="checkbox"  th:value="${m.id}" th:text="${m.nome}" th:field="*{membroGrupos[__${mStat.index}__].membro}" />-->
+<!--        	-->
+<!--        </label><br>-->
+        
+     <!--     <select class="form-control"  th:field="${membro.enderecos[0].cidade}"> >th:value="${membro.enderecos[0].cidade}">
+				       <option th:each="cidade: ${cidades}" th:value="${cidade.id}" th:text="${cidade.nome}"></option>
+				       </select> -->
+
+<!--        <th:block th:each="membro : ${allMembros}">
+           <input type="checkbox" th:name="${membros}" th:value="${membro.id}"/>
+           <label th:text="${membro.nome}"></label>
+           <br>
+       </th:block>  -->
+
+<!--         <input type="checkbox" name="membros"
+               th:each="membro : ${allMembros}"
+               th:text="${membro.nome}"
+               th:value="${membro.id}"
+               th:field="*{membroGrupos}"
+        /> -->
+
+        <div class="row">
+            <div class=" col-md offset-sm-3 offset-md-6" >
+                <button type="submit" class="btn btn-primary">Salvar</button>
+            </div>
+        </div>
+
+    </form>
+</main>
+
+<script th:src="@{/js/cidades.js}"></script>
+<script th:src="@{/js/jquery.mask.min.js}"></script>
+<script th:src="@{/js/mascaras.js}"></script>
+
+
+
+
+</body>
+</html>

@@ -16,15 +16,15 @@
 
             <th scope="col">Nome</th>
             <th scope="col">Atribuição no Grupo</th>
-            <th scope="col">Ação</th>
+            <th scope="col">Ações</th>
             </thead>
 
             <tbody>
             <tr scope="row" th:each="participante : ${membrosInscritos}">
-                <td th:text="${participante.membro.nome}"></td>
-                <td th:text="${participante.atribuicaoMembro.getAtribuicao} "></td>
+                <td class="col-3" th:text="${participante.membro.nome}"></td>
+                <td class="col-2" th:text="${participante.atribuicaoMembro.getAtribuicao} "></td>
 
-                <td>
+                <td class="col-1" >
                     <a class="col-xs-6 m-1 btn btn-primary btn-sm "
                        th:href="@{/membro/admin/grupo/membroGrupo/editar/{id}(id=${participante.id})}">
                         <i class="fas fa-edit"></i>

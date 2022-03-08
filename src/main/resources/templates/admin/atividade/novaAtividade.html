@@ -12,7 +12,7 @@
 
         <div class="row">
             <div class="col-3 form-group  ">
-                <label>tipo:</label>
+                <label>Tipo:</label>
                 <select th:errorclass="is-invalid" class="selectpicker form-control" data-live-search="true" data-size="5"
                         th:field="*{tipo}" title="Selecione uma opção" required>
 
@@ -35,13 +35,13 @@
 
         <div class="row">
             <div class="col form-group  ">
-                <label>Descricao:</label>
+                <label>Descrição:</label>
                 <textarea class="form-control" id="content" th:field="*{descricao}"></textarea>
             </div>
 
         </div>
 
-        <div class="row text-center">
+        <div class="row ">
             <div class="col-6 form-group  ">
                 <label >Data: </label>
                 <input required th:errorclass="is-invalid" th:attr="min=${minData}" type="datetime-local" class="form-control" th:field="*{prazoEntrega}">
